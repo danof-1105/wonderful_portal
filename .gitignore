@@ -78,3 +78,6 @@ yarn-debug.log*
 
 # Ignore docker-compose.yml
 /docker-compose.yml
+
+# Ignore database.yml
+/config/database.yml
