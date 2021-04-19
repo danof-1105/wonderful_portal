@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_144353) do
+ActiveRecord::Schema.define(version: 2021_04_19_145722) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_04_19_144353) do
   end
 
   create_table "community_directories", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.bigint "directory_id", null: false
     t.bigint "community_id", null: false
     t.datetime "created_at", precision: 6, null: false
