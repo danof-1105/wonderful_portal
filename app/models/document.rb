@@ -26,6 +26,8 @@
 class Document < ApplicationRecord
   has_many :comments
   has_many :document_images
+  has_many :community_directory_documents
+  has_many :community_directories, through: :community_directory_documents
   belongs_to :user_directory
   belongs_to :user
   belongs_to :owner_id, polymorphic: true
