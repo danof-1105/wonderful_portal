@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_145722) do
+ActiveRecord::Schema.define(version: 2021_04_19_150418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,10 +75,10 @@ ActiveRecord::Schema.define(version: 2021_04_19_145722) do
   create_table "user_directories", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
-    t.bigint "user_directory_id", null: false
+    t.bigint "directory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_directory_id"], name: "index_user_directories_on_user_directory_id"
+    t.index ["directory_id"], name: "index_user_directories_on_directory_id"
     t.index ["user_id"], name: "index_user_directories_on_user_id"
   end
 
@@ -105,6 +105,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_145722) do
   add_foreign_key "document_images", "documents"
   add_foreign_key "documents", "user_directories"
   add_foreign_key "documents", "users", column: "writer_id"
-  add_foreign_key "user_directories", "user_directories"
+  add_foreign_key "user_directories", "user_directories", column: "directory_id"
   add_foreign_key "user_directories", "users"
 end
