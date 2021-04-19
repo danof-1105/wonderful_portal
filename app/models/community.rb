@@ -11,4 +11,5 @@ class Community < ApplicationRecord
   has_many :community_users
   has_many :users, through: :community_users
   has_many :documents, as: :owner
+  has_many :community_directories
 end
