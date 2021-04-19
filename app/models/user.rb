@@ -19,6 +19,7 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 class User < ApplicationRecord
+  has_many :user_directories
   has_many :community_users
   has_many :communities, through: :community_users
   # Include default devise modules. Others available are:

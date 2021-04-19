@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_19_133316) do
+ActiveRecord::Schema.define(version: 2021_04_19_134410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2021_04_19_133316) do
     t.index ["user_id"], name: "index_community_users_on_user_id"
   end
 
+  create_table "user_directories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.bigint "user_directory_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_directory_id"], name: "index_user_directories_on_user_directory_id"
+    t.index ["user_id"], name: "index_user_directories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -46,4 +56,6 @@ ActiveRecord::Schema.define(version: 2021_04_19_133316) do
 
   add_foreign_key "community_users", "communities"
   add_foreign_key "community_users", "users"
+  add_foreign_key "user_directories", "user_directories"
+  add_foreign_key "user_directories", "users"
 end
