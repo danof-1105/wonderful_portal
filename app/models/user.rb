@@ -22,6 +22,8 @@ class User < ApplicationRecord
   has_many :user_directories
   has_many :community_users
   has_many :communities, through: :community_users
+  has_many :documents
+  has_many :documents, as: :owner
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
