@@ -23,7 +23,8 @@ class User < ApplicationRecord
   has_many :community_users, dependent: :destroy
   has_many :communities, through: :community_users
   has_many :documents, dependent: :destroy
-  has_many :documents, foreign_key: :owner_id, dependent: :destroy
+  has_many :documents, foreign_key: :writer_id, dependent: :nullify
+  has_many :have_documents, class_name: "Document", as: :owner, dependent: :nullify
   has_many :comments, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

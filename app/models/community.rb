@@ -10,6 +10,6 @@
 class Community < ApplicationRecord
   has_many :community_users, dependent: :destroy
   has_many :users, through: :community_users
-  has_many :documents, foreign_key: :owner_id, dependent: :destroy
-  has_many :community_directories, dependet: :destroy
+  has_many :have_documents, class_name: "Document", as: :owner, dependent: :nullify
+  has_many :community_directories, dependent: :destroy
 end
