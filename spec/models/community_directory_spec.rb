@@ -16,7 +16,7 @@
 #
 #  fk_rails_...  (community_id => communities.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe CommunityDirectory, type: :model do
   pending "add some examples to (or delete) #{__FILE__}"
