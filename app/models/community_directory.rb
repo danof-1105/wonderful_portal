@@ -20,8 +20,8 @@
 #  fk_rails_...  (directory_id => community_directories.id)
 #
 class CommunityDirectory < ApplicationRecord
-  has_many :community_directories, foreign_key: :directory_id
-  has_many :community_directory_documents
+  has_many :community_directories, foreign_key: :directory_id, dependent: :destroy
+  has_many :community_directory_documents, dependent: :destroy
   has_many :documents, through: :community_directory_documents
   belongs_to :community_directory
   belongs_to :community

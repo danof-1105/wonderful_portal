@@ -20,7 +20,7 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class UserDirectory < ApplicationRecord
-  has_many :user_directories, foreign_key: :directory_id
+  has_many :user_directories, foreign_key: :directory_id, dependent: :destroy
   belongs_to :user
   belongs_to :user_directory
 end

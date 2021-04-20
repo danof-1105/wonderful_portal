@@ -24,9 +24,9 @@
 #  fk_rails_...  (writer_id => users.id)
 #
 class Document < ApplicationRecord
-  has_many :comments
-  has_many :document_images
-  has_many :community_directory_documents
+  has_many :comments, dependent: :destroy
+  has_many :document_images, dependent: :destroy
+  has_many :community_directory_documents, dependent: :destroy
   has_many :community_directories, through: :community_directory_documents
   belongs_to :user_directory
   belongs_to :user
