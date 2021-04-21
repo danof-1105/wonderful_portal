@@ -24,6 +24,10 @@ module WonderfulPortal
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
+    # 標準言語とタイムゾーンを日本に変更
+    config.i18n.default_locale = :ja
+    config.time_zone = "Asia/Tokyo"
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -34,5 +38,8 @@ module WonderfulPortal
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end
