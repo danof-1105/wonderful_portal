@@ -22,4 +22,6 @@ class UserDirectory < ApplicationRecord
   belongs_to :user
   has_many :documents, dependent: :nullify
   has_ancestry
+
+  validates :name, length: {maximum: 20}
 end
