@@ -21,4 +21,5 @@
 class UserDirectory < ApplicationRecord
   belongs_to :user
   has_many :documents, dependent: :nullify
+  has_ancestry
 end
