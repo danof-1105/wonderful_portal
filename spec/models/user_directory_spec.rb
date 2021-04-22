@@ -24,14 +24,14 @@ RSpec.describe UserDirectory, type: :model do
   describe "バリデーションのチェック" do
     subject { user_directory }
 
-    context "name が２０文字以内のとき" do
+    context "name が20文字以下のとき" do
       let(:user_directory) { build(:user_directory) }
       it "ユーザーディレクトリが作られる" do
         expect(subject).to be_valid
       end
     end
 
-    context "name が２０文字以上のとき" do
+    context "name が21文字以上のとき" do
       let(:user_directory) { build(:user_directory, name: "ディレクトリ" * 30) }
       it "ユーザーディレクトリが作られない" do
         expect(subject).to_not be_valid
