@@ -21,7 +21,7 @@
 FactoryBot.define do
   factory :user_directory do
     name { "MyString" }
-    user { nil }
-    user_directory { nil }
+    user
+    ancestry { nil }
   end
 end
