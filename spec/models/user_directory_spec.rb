@@ -22,36 +22,36 @@ require "rails_helper"
 
 RSpec.describe UserDirectory, type: :model do
   describe "バリデーションのチェック" do
-    subject { user_directory.valid? }
+    subject { user_directory }
 
     context "name が２０文字以内のとき" do
       let(:user_directory) { build(:user_directory) }
       it "ユーザーディレクトリが作られる" do
-        expect(subject).to eq true
+        expect(subject).to be_valid
       end
     end
 
     context "name が２０文字以上のとき" do
       let(:user_directory) { build(:user_directory, name: "ディレクトリ" * 30) }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to eq false
-        expect(user_directory.errors.details[:name][0][:error]).to eq :too_long
+        expect(subject).to_not be_valid
+        expect(subject.errors.details[:name][0][:error]).to eq :too_long
       end
     end
 
     context "name が空のとき" do
       let(:user_directory) { build(:user_directory, name: "") }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to eq false
-        expect(user_directory.errors.details[:name][0][:error]).to eq :blank
+        expect(subject).to_not be_valid
+        expect(subject.errors.details[:name][0][:error]).to eq :blank
       end
     end
 
     context "user_id が空のとき" do
-      let(:user_directory) { build(:user_directory, user_id: "") }
+      let(:user_directory) { build(:user_directory, user_id: nil) }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to eq false
-        expect(user_directory.errors.details[:user][0][:error]).to eq :blank
+        expect(subject).to_not be_valid
+        expect(subject.errors.details[:user][0][:error]).to eq :blank
       end
     end
   end
