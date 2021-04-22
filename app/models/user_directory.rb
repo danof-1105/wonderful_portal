@@ -23,5 +23,5 @@ class UserDirectory < ApplicationRecord
   has_many :documents, dependent: :nullify
   has_ancestry
 
-  validates :name, length: {maximum: 20}
+  validates :name, length: {maximum: 20}, presence: true
 end
