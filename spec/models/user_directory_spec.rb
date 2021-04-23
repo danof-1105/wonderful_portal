@@ -34,7 +34,7 @@ RSpec.describe UserDirectory, type: :model do
     context "name が21文字以上のとき" do
       let(:user_directory) { build(:user_directory, name: "ディレクトリ" * 30) }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :too_long
       end
     end
@@ -42,7 +42,7 @@ RSpec.describe UserDirectory, type: :model do
     context "name が空のとき" do
       let(:user_directory) { build(:user_directory, name: "") }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :blank
       end
     end
@@ -50,7 +50,7 @@ RSpec.describe UserDirectory, type: :model do
     context "user_id が空のとき" do
       let(:user_directory) { build(:user_directory, user_id: nil) }
       it "ユーザーディレクトリが作られない" do
-        expect(subject).to_not be_valid
+        expect(subject).not_to be_valid
         expect(subject.errors.details[:user][0][:error]).to eq :blank
       end
     end
