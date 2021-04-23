@@ -21,7 +21,7 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  fdescribe "バリデーションのチェック" do
+  describe "バリデーションのチェック" do
     subject { user }
 
     context "必要な情報が入力されている時" do
