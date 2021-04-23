@@ -25,10 +25,7 @@
 #
 FactoryBot.define do
   factory :document do
-    title { "MyString" }
-    body { "MyText" }
-    user_directory { nil }
-    user { nil }
-    owner_id { nil }
+    title { Faker::Game.title }
+    body { Faker::Lorem.sentence }
   end
 end

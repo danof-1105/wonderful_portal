@@ -31,4 +31,6 @@ class Document < ApplicationRecord
   belongs_to :user_directory
   belongs_to :writer, class_name: "User"
   belongs_to :owner, polymorphic: true
+
+  validates :title, length: { maximum: 50 }, presence: true
 end
