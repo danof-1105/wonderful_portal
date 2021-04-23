@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
       let(:user) { build(:user, name: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject.errors.errors[0].type).to eq :blank
+        expect(subject.errors.details[:name][0][:error]).to eq :blank
       end
     end
 
@@ -43,7 +43,7 @@ RSpec.describe User, type: :model do
       let(:user) { build(:user, email: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject.errors.errors[0].type).to eq :blank
+        expect(subject.errors.details[:email][0][:error]).to eq :blank
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe User, type: :model do
       let(:user) { build(:user, password: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject.errors.errors[0].type).to eq :blank
+        expect(subject.errors.details[:password][0][:error]).to eq :blank
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
     end
 
     context "nameが21文字以上の時" do
-      let(:user) { build(:user, name: "A" * 21, password: nil) }
+      let(:user) { build(:user, name: "A" * 21) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :too_long
