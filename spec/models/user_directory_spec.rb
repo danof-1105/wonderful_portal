@@ -32,7 +32,7 @@ RSpec.describe UserDirectory, type: :model do
     end
 
     context "name が21文字以上のとき" do
-      let(:user_directory) { build(:user_directory, name: "ディレクトリ" * 30) }
+      let(:user_directory) { build(:user_directory, name: "A" * 21) }
       it "ユーザーディレクトリが作られない" do
         expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :too_long
