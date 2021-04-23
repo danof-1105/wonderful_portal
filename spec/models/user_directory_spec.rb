@@ -40,7 +40,7 @@ RSpec.describe UserDirectory, type: :model do
     end
 
     context "name が空のとき" do
-      let(:user_directory) { build(:user_directory, name: "") }
+      let(:user_directory) { build(:user_directory, name: nil) }
       it "ユーザーディレクトリが作られない" do
         expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :blank
