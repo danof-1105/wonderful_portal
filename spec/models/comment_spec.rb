@@ -22,21 +22,24 @@
 require "rails_helper"
 
 RSpec.describe Comment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
-  let(:user) { create(:user, name: "NAME", email: "sample@example.com", password: "sample12") }
-  let(:user_directory) { create(:user_directory, name: "user1", user_id: user.id) }
-  let(:document) { create(:document, title: "Title", body: "Body", writer_id: user.id, owner: user, user_directory_id: user_directory.id) }
-  context "body がある時" do
-    let(:comment) { build(:comment, document_id: document.id, user_id: user.id) }
-    it "コメント登録される" do
-      expect(comment).to be_valid
-    end
-  end
+  describe "バリデーションのチェック" do
+    subject { comment }
 
-  context "body がない時" do
-    let(:comment) { build(:comment, body: nil, document_id: document.id, user_id: user.id) }
-    it "エラーする" do
-      expect(comment).not_to be_valid
+    let(:user) { create(:user) }
+    let(:user_directory) { create(:user_directory, user: user) }
+    let(:document) { create(:document, writer: user, owner: user, user_directory: user_directory) }
+    context "body がある時" do
+      let(:comment) { build(:comment, document: document, user: user) }
+      it "コメント登録される" do
+        expect(subject).to be_valid
+      end
+    end
+
+    context "body がない時" do
+      let(:comment) { build(:comment, body: nil, document: document, user: user) }
+      it "コメント登録できない" do
+        expect(subject).not_to be_valid
+      end
     end
   end
 end
