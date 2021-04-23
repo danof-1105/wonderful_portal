@@ -21,52 +21,52 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  describe "バリデーションのチェック" do
+  fdescribe "バリデーションのチェック" do
     subject { user }
 
     context "必要な情報が入力されている時" do
-      let(:user) { create(:user) }
+      let(:user) { build(:user) }
       it "ユーザーが作成される" do
         expect(subject).to be_valid
       end
     end
 
     context "nameが入力されていない時" do
-      let(:user) { create(:user, name: nil) }
+      let(:user) { build(:user, name: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject).to raise_error(ActiveRecord::RecordInvalid)
+        expect(subject.errors.errors[0].type).to eq :blank
       end
     end
 
     context "emailが入力されていない時" do
-      let(:user) { create(:user, email: nil) }
+      let(:user) { build(:user, email: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject).to raise_error(ActiveRecord::RecordInvalid)
+        expect(subject.errors.errors[0].type).to eq :blank
       end
     end
 
     context "passwordが入力されていない時" do
-      let(:user) { create(:user, password: nil) }
+      let(:user) { build(:user, password: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject).to raise_error(ActiveRecord::RecordInvalid)
+        expect(subject.errors.errors[0].type).to eq :blank
       end
     end
 
-    context "nameが20文字以下のとき" do
-      let(:user) { create(:user) }
+    context "nameが20文字以下の時" do
+      let(:user) { build(:user, name: "A" * 20) }
       it "ユーザーが作成される" do
         expect(subject).to be_valid
       end
     end
 
-    context "nameが21文字以上のとき" do
-      let(:user) { create(:user, name: "A" * 21) }
+    context "nameが21文字以上の時" do
+      let(:user) { build(:user, name: "A" * 21, password: nil) }
       it "ユーザーが作成されない" do
         expect(subject).not_to be_valid
-        expect(subject).to raise_error(ActiveRecord::RecordInvalid)
+        expect(subject.errors.details[:name][0][:error]).to eq :too_long
       end
     end
   end
