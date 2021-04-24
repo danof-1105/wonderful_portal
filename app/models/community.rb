@@ -7,6 +7,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
+# Indexes
+#
+#  index_communities_on_name  (name) UNIQUE
+#
 class Community < ApplicationRecord
   has_many :community_users, dependent: :destroy
   has_many :users, through: :community_users
