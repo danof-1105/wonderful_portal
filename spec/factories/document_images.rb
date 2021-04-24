@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :document_image do
-    image { "MyString" }
-    document { nil }
+    image { Faker::Internet.url }
+    document
   end
 end
