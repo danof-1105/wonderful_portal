@@ -34,12 +34,10 @@ ActiveRecord::Schema.define(version: 2021_04_24_050508) do
 
   create_table "community_directories", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "directory_id", null: false
     t.bigint "community_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["community_id"], name: "index_community_directories_on_community_id"
-    t.index ["directory_id"], name: "index_community_directories_on_directory_id"
   end
 
   create_table "community_directory_documents", force: :cascade do |t|
@@ -85,12 +83,10 @@ ActiveRecord::Schema.define(version: 2021_04_24_050508) do
   create_table "user_directories", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
-    t.bigint "directory_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "ancestry"
     t.index ["ancestry"], name: "index_user_directories_on_ancestry"
-    t.index ["directory_id"], name: "index_user_directories_on_directory_id"
     t.index ["user_id"], name: "index_user_directories_on_user_id"
   end
 
@@ -111,7 +107,6 @@ ActiveRecord::Schema.define(version: 2021_04_24_050508) do
   add_foreign_key "comments", "documents"
   add_foreign_key "comments", "users"
   add_foreign_key "community_directories", "communities"
-  add_foreign_key "community_directories", "community_directories", column: "directory_id"
   add_foreign_key "community_directory_documents", "community_directories"
   add_foreign_key "community_directory_documents", "documents"
   add_foreign_key "community_users", "communities"
@@ -119,6 +114,5 @@ ActiveRecord::Schema.define(version: 2021_04_24_050508) do
   add_foreign_key "document_images", "documents"
   add_foreign_key "documents", "user_directories"
   add_foreign_key "documents", "users", column: "writer_id"
-  add_foreign_key "user_directories", "user_directories", column: "directory_id"
   add_foreign_key "user_directories", "users"
 end
