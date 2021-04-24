@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :community do
-    name { "MyString" }
+    sequence(:name) { |n| "#{n}_#{Faker::Team.name}" }
   end
 end
