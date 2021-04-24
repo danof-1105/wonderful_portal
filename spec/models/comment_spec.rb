@@ -39,6 +39,7 @@ RSpec.describe Comment, type: :model do
       let(:comment) { build(:comment, body: nil, document: document, user: user) }
       it "コメント登録できない" do
         expect(subject).not_to be_valid
+        expect(subject.errors.details[:body][0][:error]).to eq :blank
       end
     end
   end
