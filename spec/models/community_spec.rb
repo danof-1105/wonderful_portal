@@ -18,7 +18,7 @@ RSpec.describe Community, type: :model do
     subject { community }
 
     context "コミュニティ名が50文字以下の時" do
-      let(:community) { build(:community) }
+      let(:community) { build(:community, name: "a" * 50) }
       it "コミュニティが登録される" do
         expect(subject).to be_valid
       end
