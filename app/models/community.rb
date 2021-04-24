@@ -12,4 +12,7 @@ class Community < ApplicationRecord
   has_many :users, through: :community_users
   has_many :have_documents, class_name: "Document", as: :owner, dependent: :nullify
   has_many :community_directories, dependent: :destroy
+  validates :name, presence: true,
+                   length: { maximum: 50 },
+                   uniqueness: true
 end
