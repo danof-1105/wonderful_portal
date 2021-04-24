@@ -18,7 +18,7 @@
 #
 FactoryBot.define do
   factory :document_image do
-    image { "MyString" }
-    document { nil }
+    image { Faker::File.mime_type }
+    document
   end
 end

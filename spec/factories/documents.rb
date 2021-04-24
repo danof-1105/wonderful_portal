@@ -27,5 +27,8 @@ FactoryBot.define do
   factory :document do
     title { Faker::Game.title }
     body { Faker::Lorem.sentence }
+    user_directory
+    writer { user_directory.user }
+    owner { user_directory.user }
   end
 end

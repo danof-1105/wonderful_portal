@@ -25,18 +25,15 @@ RSpec.describe Comment, type: :model do
   describe "バリデーションのチェック" do
     subject { comment }
 
-    let(:user) { create(:user) }
-    let(:user_directory) { create(:user_directory, user: user) }
-    let(:document) { create(:document, writer: user, owner: user, user_directory: user_directory) }
     context "body がある時" do
-      let(:comment) { build(:comment, document: document) }
+      let(:comment) { build(:comment) }
       it "コメント登録される" do
         expect(subject).to be_valid
       end
     end
 
     context "body がない時" do
-      let(:comment) { build(:comment, body: nil, document: document) }
+      let(:comment) { build(:comment, body: nil) }
       it "コメント登録できない" do
         expect(subject).not_to be_valid
         expect(subject.errors.details[:body][0][:error]).to eq :blank
