@@ -33,18 +33,19 @@ RSpec.describe Community, type: :model do
     end
 
     context "名前が重複していないコミュニティが作成された時" do
-      let(:community1) { create(:community) }
-      let(:community) { build(:community) }
+      let(:other_community) { create(:community, name: "コミュニティA") }
+      let(:community) { build(:community, name: "コミュニティB") }
       it "コミュニティが登録される" do
-        community1
+        other_community
         expect(subject).to be_valid
       end
     end
 
     context "名前が重複するコミュニティが作成された時" do
-      let(:community1) { create(:community) }
-      let(:community) { build(:community, name: community1.name) }
+      let(:other_community) { create(:community, name: "コミュニティA") }
+      let(:community) { build(:community, name: "コミュニティA") }
       it "コミュニティ登録ができない" do
+        other_community
         expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :taken
       end
