@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row border-bottom mt-5 pb-3">
+    <div class="col col-8">
+      <div class="pb-2">
+        <%=  @document.user_directory.path %>
+      </div>
+      <h2>
+        <%= @document.title %>
+      </h2>
+    </div>
+    <div class="col col-4 text-center">
+      <div>
+        作成日:<%=  @document.created_at.to_s(:datetime_jp) %>
+      </div>
+      <div>
+        更新日:<%=  @document.updated_at.to_s(:datetime_jp) %>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-5">
+    <div class="col col-8">
+      <%= @document.body %>
+    </div>
+    <div class="col col-4">
+      <div class="text-center">
+        目次
+      </div>
+      <div class="text-center mt-3">
+        ・サンプルサブタイトル
+      </div>
+    </div>
+  </div>
+</div>
