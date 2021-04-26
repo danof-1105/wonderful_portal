@@ -2,14 +2,14 @@
   <div class="row border-bottom mt-5 pb-3">
     <div class="col col-8">
       <div class="pb-2">
-        <%=  @document.user_directory.path %>
+        <%= @directory.join("/") %>
       </div>
       <h2>
         <%= @document.title %>
       </h2>
     </div>
     <div class="col col-4 text-center">
-      <div>
+      <div class="pt-3">
         作成日:<%=  @document.created_at.to_s(:datetime_jp) %>
       </div>
       <div>
