@@ -58,6 +58,7 @@ if User.all.blank?
     # ER図ディレクトリの子ディレクトリ
     draft_directory = erdiagram_directory.children.create!(name: "下書き", user: dev_directory.user)
 
+    ##########################################
     # Communityの作成
     ##########################################
     community = Community.create!(name: "Wonderful-Portal")
@@ -91,6 +92,14 @@ if User.all.blank?
     # チーム開発ディレクトリの子ディレクトリ
     rule_directory = team_development_directory.children.create!(name: "規約", community: share_directory.community)
     team_development_directory.children.create!(name: "開発メンバー", community: share_directory.community)
+
+    ##########################################
+    # Documentの作成
+    ##########################################
+    # ユーザーディレクトリ内のドキュメント
+    document = user.documents.create!(title: "ユーザードキュメント", body: "ユーザーの持つドキュメント" * 5, user_directory: design_directory, owner: user )
+    user.documents.create!(title: "設計", body: "設計に関するテキスト" * 5, user_directory: design_directory, owner: user )
+    user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user )
 
     puts "初期データの投入に成功しました！"
   end
