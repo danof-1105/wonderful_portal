@@ -1,5 +1,5 @@
 if User.all.blank?
-  ActiveRecord::Base.transaction do
+  ActiveRecord::Base.transaction do # rubocop:disable Metrics/BlockLength
     ##########################################
     # Userの作成
     ##########################################
