@@ -69,12 +69,12 @@ if User.all.blank?
     # CommunityUserの作成
     ##########################################
     # WonderfulPortalコミュニティのユーザー
-    CommunityUser.create!(community_id: community.id, user_id: user.id)
-    CommunityUser.create!(community_id: community.id, user_id: user2.id)
+    CommunityUser.create!(community: community, user: user)
+    CommunityUser.create!(community: community, user: user2)
 
     # WonderfulCodeコミュニティのユーザー
-    CommunityUser.create!(community_id: community2.id, user_id: user2.id)
-    CommunityUser.create!(community_id: community2.id, user_id: user3.id)
+    CommunityUser.create!(community: community2, user: user2)
+    CommunityUser.create!(community: community2, user: user3)
 
     ##########################################
     # CommunityDirectoryの作成
@@ -115,14 +115,14 @@ if User.all.blank?
     ##########################################
     # CommunityDirectoryDocumentsの作成
     ##########################################
-    CommunityDirectoryDocument.create!(document_id: document.id, community_directory_id: team_development_directory.id)
-    CommunityDirectoryDocument.create!(document_id: document2.id, community_directory_id: team_development_directory.id)
+    CommunityDirectoryDocument.create!(document: document, community_directory: team_development_directory)
+    CommunityDirectoryDocument.create!(document: document2, community_directory: team_development_directory)
 
     ##########################################
     # Commentの作成
     ##########################################
-    document.comments.create!(body: "LGTMです！" * 10, user_id: user.id)
-    document.comments.create!(body: "修正あり" * 10, user_id: user2.id)
+    document.comments.create!(body: "LGTMです！" * 10, user: user)
+    document.comments.create!(body: "修正あり" * 10, user: user2)
 
     puts "初期データの投入に成功しました！" # rubocop:disable all
   end
