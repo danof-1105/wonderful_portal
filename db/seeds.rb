@@ -109,9 +109,14 @@ if User.all.blank?
     ##########################################
     # ユーザーディレクトリ内のドキュメント
     document = user.documents.create!(title: "ユーザードキュメント", body: "ユーザーの持つドキュメント" * 5, user_directory: design_directory, owner: user )
-    user.documents.create!(title: "設計", body: "設計に関するテキスト" * 5, user_directory: design_directory, owner: user )
-    user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user )
+    document2 = user.documents.create!(title: "設計", body: "設計に関するテキスト" * 5, user_directory: design_directory, owner: user )
+    document3 = user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user )
 
+    ##########################################
+    # CommunityDirectoryDocumentsの作成
+    ##########################################
+    CommunityDirectoryDocument.create!(document_id: document.id, community_directory_id: team_development_directory.id)
+    CommunityDirectoryDocument.create!(document_id: document2.id, community_directory_id: team_development_directory.id)
     puts "初期データの投入に成功しました！"
   end
 else
