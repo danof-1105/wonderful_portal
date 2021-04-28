@@ -3,6 +3,7 @@
 # Table name: community_directories
 #
 #  id           :bigint           not null, primary key
+#  ancestry     :string
 #  name         :string           not null
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
@@ -10,6 +11,7 @@
 #
 # Indexes
 #
+#  index_community_directories_on_ancestry      (ancestry)
 #  index_community_directories_on_community_id  (community_id)
 #
 # Foreign Keys
