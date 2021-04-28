@@ -4,8 +4,8 @@ if User.all.blank?
     # Userの作成
     ##########################################
     user = User.create!(email: "yamada@example.com", name: "山田 太郎", password: "password")
-    User.create!(email: "suzuki@example.com", name: "鈴木 次郎", password: "password")
-    User.create!(email: "satou@example.com", name: "佐藤 三郎", password: "password")
+    user2 = User.create!(email: "suzuki@example.com", name: "鈴木 次郎", password: "password")
+    user3 = User.create!(email: "satou@example.com", name: "佐藤 三郎", password: "password")
 
     ##########################################
     # UserDirectoryの作成
@@ -62,8 +62,19 @@ if User.all.blank?
     # Communityの作成
     ##########################################
     community = Community.create!(name: "Wonderful-Portal")
-    Community.create!(name: "Wonderful-Code")
-    Community.create!(name: "Wonderfur-Editor")
+    community2 = Community.create!(name: "Wonderful-Code")
+    community3 = Community.create!(name: "Wonderfur-Editor")
+
+    ##########################################
+    # CommunityUserの作成
+    ##########################################
+    # WonderfulPortalコミュニティのユーザー
+    CommunityUser.create!(community_id: community.id, user_id: user.id)
+    CommunityUser.create!(community_id: community.id, user_id: user2.id)
+
+    # WonderfulCodeコミュニティのユーザー
+    CommunityUser.create!(community_id: community2.id, user_id: user2.id)
+    CommunityUser.create!(community_id: community2.id, user_id: user3.id)
 
     ##########################################
     # CommunityDirectoryの作成
