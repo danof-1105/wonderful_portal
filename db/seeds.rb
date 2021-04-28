@@ -37,7 +37,7 @@ if User.all.blank?
 
     # マニュアルディレクトリの孫ディレクトリ
     # 手順ディレクトリの子ディレクトリ
-    initsetting_directory = process_directory.children.create!(name: "初期設定", user: manual_directory.user)
+    process_directory.children.create!(name: "初期設定", user: manual_directory.user)
     process_directory.children.create!(name: "環境構築", user: manual_directory.user)
 
     #######################
@@ -56,14 +56,14 @@ if User.all.blank?
     # 設計ディレクトリの曾孫ディレクトリ
     # ワイヤーフレームディレクトリの孫ディレクトリ
     # ER図ディレクトリの子ディレクトリ
-    draft_directory = erdiagram_directory.children.create!(name: "下書き", user: dev_directory.user)
+    erdiagram_directory.children.create!(name: "下書き", user: dev_directory.user)
 
     ##########################################
     # Communityの作成
     ##########################################
     community = Community.create!(name: "Wonderful-Portal")
     community2 = Community.create!(name: "Wonderful-Code")
-    community3 = Community.create!(name: "Wonderfur-Editor")
+    Community.create!(name: "Wonderfur-Editor")
 
     ##########################################
     # CommunityUserの作成
@@ -93,7 +93,7 @@ if User.all.blank?
     share_directory.children.create!(name: "コミュニティルール", community: share_directory.community)
 
     # 個人ディレクトリの子ディレクトリ
-    person_directory = private_directory.children.create!(name: "山田さん", community: private_directory.community)
+    private_directory.children.create!(name: "山田さん", community: private_directory.community)
     private_directory.children.create!(name: "佐藤さん", community: private_directory.community)
 
     #######################
@@ -101,7 +101,7 @@ if User.all.blank?
     #######################
     # 共有ディレクトリの孫ディレクトリ
     # チーム開発ディレクトリの子ディレクトリ
-    rule_directory = team_development_directory.children.create!(name: "規約", community: share_directory.community)
+    team_development_directory.children.create!(name: "規約", community: share_directory.community)
     team_development_directory.children.create!(name: "開発メンバー", community: share_directory.community)
 
     ##########################################
@@ -110,7 +110,7 @@ if User.all.blank?
     # ユーザーディレクトリ内のドキュメント
     document = user.documents.create!(title: "ユーザードキュメント", body: "ユーザーの持つドキュメント" * 5, user_directory: design_directory, owner: user)
     document2 = user.documents.create!(title: "設計", body: "設計に関するテキスト" * 5, user_directory: design_directory, owner: user)
-    document3 = user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user)
+    user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user)
 
     ##########################################
     # CommunityDirectoryDocumentsの作成

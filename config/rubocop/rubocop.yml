@@ -121,6 +121,7 @@ Metrics/BlockLength:
     - "config/routes.rb"
     - "config/routes/**/*.rb"
     - "*.gemspec"
+    - "db/seeds.rb"
 
 # 6 は強すぎるので緩める
 Metrics/CyclomaticComplexity:
