@@ -124,12 +124,14 @@ if User.all.blank?
     document.comments.create!(body: "LGTMです！" * 10, user_id: user.id)
     document.comments.create!(body: "修正あり" * 10, user_id: user2.id)
 
-    puts "初期データの投入に成功しました！"
+    puts "初期データの投入に成功しました！" # rubocop:disable all
   end
 else
+  # rubocop:disable all
   puts <<~SQL
     既にデータは存在しています。
     下記コマンドを実行してデータを削除してから再読み込みしてください。
     bundle exec rails db:migrate:reset
   SQL
+  # rubocop:enable all
 end
