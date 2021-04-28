@@ -117,6 +117,14 @@ if User.all.blank?
     ##########################################
     CommunityDirectoryDocument.create!(document_id: document.id, community_directory_id: team_development_directory.id)
     CommunityDirectoryDocument.create!(document_id: document2.id, community_directory_id: team_development_directory.id)
+
+    ##########################################
+    # Commentの作成
+    ##########################################
+    document.comments.create!(body: "LGTMです！" * 10, user_id: user.id)
+    document.comments.create!(body: "修正あり" * 10, user_id: user2.id)
+
+
     puts "初期データの投入に成功しました！"
   end
 else
