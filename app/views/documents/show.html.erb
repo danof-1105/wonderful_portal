@@ -4,9 +4,9 @@
       <div class="pb-2">
         <%= @directory.join("/") %>
       </div>
-      <h2>
+      <h1>
         <%= @document.title %>
-      </h2>
+      </h1>
     </div>
     <div class="col col-4 text-center">
       <div class="pt-3">
@@ -19,15 +19,18 @@
   </div>
   <div class="row mt-5">
     <div class="col col-8">
-      <%= @document.body %>
+      <div id="content"></div>
+      <div id="mdraw" style="display:none;">
+        <%= @document.body %>
+      </div>
     </div>
     <div class="col col-4">
       <div class="text-center">
         目次
       </div>
       <div class="text-center mt-3">
-        ・サンプルサブタイトル
       </div>
     </div>
   </div>
 </div>
+<%= javascript_pack_tag 'documents/show' %>
