@@ -7,6 +7,8 @@ if User.all.blank?
     user2 = User.create!(email: "suzuki@example.com", name: "鈴木 次郎", password: "password")
     user3 = User.create!(email: "satou@example.com", name: "佐藤 三郎", password: "password")
 
+
+
     ##########################################
     # UserDirectoryの作成
     ##########################################
@@ -58,12 +60,16 @@ if User.all.blank?
     # ER図ディレクトリの子ディレクトリ
     draft_directory = erdiagram_directory.children.create!(name: "下書き", user: dev_directory.user)
 
+
+
     ##########################################
     # Communityの作成
     ##########################################
     community = Community.create!(name: "Wonderful-Portal")
     community2 = Community.create!(name: "Wonderful-Code")
     community3 = Community.create!(name: "Wonderfur-Editor")
+
+
 
     ##########################################
     # CommunityUserの作成
@@ -75,6 +81,8 @@ if User.all.blank?
     # WonderfulCodeコミュニティのユーザー
     CommunityUser.create!(community_id: community2.id, user_id: user2.id)
     CommunityUser.create!(community_id: community2.id, user_id: user3.id)
+
+
 
     ##########################################
     # CommunityDirectoryの作成
@@ -104,6 +112,8 @@ if User.all.blank?
     rule_directory = team_development_directory.children.create!(name: "規約", community: share_directory.community)
     team_development_directory.children.create!(name: "開発メンバー", community: share_directory.community)
 
+
+
     ##########################################
     # Documentの作成
     ##########################################
@@ -112,18 +122,21 @@ if User.all.blank?
     document2 = user.documents.create!(title: "設計", body: "設計に関するテキスト" * 5, user_directory: design_directory, owner: user )
     document3 = user.documents.create!(title: "ワイヤーフレーム", body: "ワイヤーフレームに関するテキスト" * 5, user_directory: wireframe_directory, owner: user )
 
+
+
     ##########################################
     # CommunityDirectoryDocumentsの作成
     ##########################################
     CommunityDirectoryDocument.create!(document_id: document.id, community_directory_id: team_development_directory.id)
     CommunityDirectoryDocument.create!(document_id: document2.id, community_directory_id: team_development_directory.id)
 
+
+
     ##########################################
     # Commentの作成
     ##########################################
     document.comments.create!(body: "LGTMです！" * 10, user_id: user.id)
     document.comments.create!(body: "修正あり" * 10, user_id: user2.id)
-
 
     puts "初期データの投入に成功しました！"
   end
