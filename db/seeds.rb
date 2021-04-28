@@ -25,7 +25,7 @@ if User.all.blank?
 
     # マニュアルディレクトリの子ディレクトリ
     process_directory = manual_directory.children.create!(name: "手順", user: manual_directory.user)
-    manual_directory.children.create!(name: "疑問点", user: dev_directory.user)
+    manual_directory.children.create!(name: "疑問点", user: manual_directory.user)
 
     #######################
     # 孫ディレクトリ(第3階層)
@@ -38,7 +38,7 @@ if User.all.blank?
     # マニュアルディレクトリの孫ディレクトリ
     # 手順ディレクトリの子ディレクトリ
     initsetting_directory = process_directory.children.create!(name: "初期設定", user: manual_directory.user)
-    process_directory.children.create!(name: "環境構築", user: dev_directory.user)
+    process_directory.children.create!(name: "環境構築", user: manual_directory.user)
 
     #######################
     # 曾孫ディレクトリ(第4階層)
@@ -57,6 +57,40 @@ if User.all.blank?
     # ワイヤーフレームディレクトリの孫ディレクトリ
     # ER図ディレクトリの子ディレクトリ
     draft_directory = erdiagram_directory.children.create!(name: "下書き", user: dev_directory.user)
+
+    # Communityの作成
+    ##########################################
+    community = Community.create!(name: "Wonderful-Portal")
+    Community.create!(name: "Wonderful-Code")
+    Community.create!(name: "Wonderfur-Editor")
+
+    ##########################################
+    # CommunityDirectoryの作成
+    ##########################################
+    #######################
+    # 親ディレクトリ(第1階層)
+    #######################
+    share_directory = community.community_directories.create!(name: "共有")
+    private_directory = community.community_directories.create!(name: "個人")
+
+    #######################
+    # 子ディレクトリ(第2階層)
+    #######################
+    # 共有ディレクトリの子ディレクトリ
+    team_development_directory = share_directory.children.create!(name: "チーム開発", community: share_directory.community)
+    share_directory.children.create!(name: "コミュニティルール", community: share_directory.community)
+
+    # 個人ディレクトリの子ディレクトリ
+    person_directory = private_directory.children.create!(name: "山田さん", community: private_directory.community)
+    private_directory.children.create!(name: "佐藤さん", community: private_directory.community)
+
+    #######################
+    # 孫ディレクトリ(第3階層)
+    #######################
+    # 共有ディレクトリの孫ディレクトリ
+    # チーム開発ディレクトリの子ディレクトリ
+    rule_directory = team_development_directory.children.create!(name: "規約", community: share_directory.community)
+    team_development_directory.children.create!(name: "開発メンバー", community: share_directory.community)
 
     puts "初期データの投入に成功しました！"
   end
