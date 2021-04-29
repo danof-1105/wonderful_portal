@@ -3,6 +3,10 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  def index
+
+  end
+
   def show
     @document = current_user.have_documents.find(params[:id])
     @directory = @document.user_directory.path.pluck(:name)
