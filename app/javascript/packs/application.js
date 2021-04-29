@@ -3,13 +3,16 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
-import "channels"
-import 'bootstrap'
-import '../src/application.scss'
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import * as ActiveStorage from "@rails/activestorage";
+import "channels";
+import "bootstrap";
+import "../src/application.scss";
+import marked from "marked";
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+window.marked = marked;
+
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();
