@@ -37,18 +37,18 @@ module WonderfulPortal
     # config.eager_load_paths << Rails.root.join("extras")
 
     # Don't generate system test files.
-    config.generators.system_tests = nil
 
     config.generators do |g|
       g.template_engine :erb
-      g.assets fales
+      g.assets false
       g.helper false
       g.test_framework :rspec,
                        view_specs: false,
                        routing_specs: false,
                        helper_specs: false,
                        controller_specs: false,
-                       request_specs: false
+                       request_specs: false,
+                       system_specs: false
     end
   end
 end
