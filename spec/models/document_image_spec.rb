@@ -19,5 +19,22 @@
 require "rails_helper"
 
 RSpec.describe DocumentImage, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "バリデーションのテスト" do
+    subject { document_image }
+
+    context "image が存在する時" do
+      let(:document_image) { build(:document_image) }
+      it "document_image が登録される" do
+        expect(subject).to be_valid
+      end
+    end
+
+    context "image が存在しない時" do
+      let(:document_image) { build(:document_image, image: nil) }
+      it "document_image は登録できない" do
+        expect(subject).not_to be_valid
+        expect(subject.errors.details[:image][0][:error]).to eq :blank
+      end
+    end
+  end
 end

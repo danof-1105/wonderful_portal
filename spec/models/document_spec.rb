@@ -26,5 +26,30 @@
 require "rails_helper"
 
 RSpec.describe Document, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "バリデーションのチェック" do
+    subject { document }
+
+    context "title が50文字以内のとき" do
+      let(:document) { build(:document, title: "A" * 50) }
+      it "Documentを保存する" do
+        expect(subject).to be_valid
+      end
+    end
+
+    context "title が51文字以上のとき" do
+      let(:document) { build(:document, title: "A" * 51) }
+      it "Documentを保存されない" do
+        expect(subject).not_to be_valid
+        expect(subject.errors.details[:title][0][:error]).to eq :too_long
+      end
+    end
+
+    context "title が空のとき" do
+      let(:document) { build(:document, title: nil) }
+      it "Documentを保存されない" do
+        expect(subject).not_to be_valid
+        expect(subject.errors.details[:title][0][:error]).to eq :blank
+      end
+    end
+  end
 end

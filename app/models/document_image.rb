@@ -18,4 +18,5 @@
 #
 class DocumentImage < ApplicationRecord
   belongs_to :document
+  validates :image, presence: true
 end

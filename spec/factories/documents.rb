@@ -25,10 +25,10 @@
 #
 FactoryBot.define do
   factory :document do
-    title { "MyString" }
-    body { "MyText" }
-    user_directory { nil }
-    user { nil }
-    owner_id { nil }
+    title { Faker::Game.title }
+    body { Faker::Lorem.sentence }
+    user_directory
+    writer { user_directory.user }
+    owner { user_directory.user }
   end
 end
