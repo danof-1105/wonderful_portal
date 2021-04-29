@@ -17,7 +17,6 @@ Bundler.require(*Rails.groups)
 
 module WonderfulPortal
   class Application < Rails::Application
-
     config.load_defaults 6.1
 
     # 標準言語とタイムゾーンを日本に変更
