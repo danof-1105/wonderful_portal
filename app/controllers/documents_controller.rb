@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   end
 
   def index
-
+    @user_directories = UserDirectory.where(ancestry: nil).pluck(:name)
   end
 
   def show
