@@ -1,11 +1,13 @@
 class DocumentsController < ApplicationController
+
   def new
     @document = Document.new
   end
 
   def index
+    current_user = User.first
     @user_directories = UserDirectory.arrange
-    @documents = Document.all # 仮で定義しているため後で削除
+    @documents = current_user.have_documents
   end
 
   def show
@@ -25,4 +27,5 @@ class DocumentsController < ApplicationController
   def document_params
     params.require(:document).permit(:title, :body)
   end
+
 end
