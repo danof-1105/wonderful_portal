@@ -15,3 +15,29 @@ ul {
     text-decoration: none;
   }
 }
+
+.directory {
+  margin-bottom: 0;
+  padding-left: 0;
+  background: rgb(148, 144, 144);
+
+  &__item {
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    position: relative;
+
+    &__link {
+      display: block;
+      padding: 1rem;
+    }
+  }
+}
+
+.directory_children {
+  // display: none;
+
+  &__item {
+    border-bottom: 1px solid #5200b7;
+  }
+}
