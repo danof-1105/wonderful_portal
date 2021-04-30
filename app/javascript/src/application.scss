@@ -3,3 +3,15 @@
 ul {
   list-style: none;
 }
+
+// ディレクトリ部分スタイル
+.link_color {
+  text-decoration: none;
+  border: none;
+  color: black;
+
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
+}
