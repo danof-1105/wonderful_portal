@@ -8,10 +8,9 @@ ul {
 .link_color {
   text-decoration: none;
   border: none;
-  color: black;
+  color: #fff;
 
   &:hover {
-    color: black;
     text-decoration: none;
   }
 }
@@ -20,24 +19,19 @@ ul {
   margin-bottom: 0;
   padding-left: 0;
   background: rgb(148, 144, 144);
+}
 
-  &__item {
-    color: #fff;
-    cursor: pointer;
+.item {
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  &__link {
     display: block;
-    position: relative;
-
-    &__link {
-      display: block;
-      padding: 1rem;
-    }
+    padding: 1rem;
   }
 }
 
-.directory_children {
-  // display: none;
-
-  &__item {
-    border-bottom: 1px solid #5200b7;
-  }
+.area {
+  display: none;
 }
