@@ -26,5 +26,5 @@
     </div>
   </div>
 </div>
-<a class="btn btn-primary" rel="nofollow" data-method="delete" href="/users/sign_out">ログアウト</a>
+<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <%= javascript_pack_tag 'documents/show' %>
