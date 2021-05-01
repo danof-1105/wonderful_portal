@@ -1,7 +1,7 @@
 $(function () {
   $('.js-directory__item__link').each(function () {
     $(this).on('click', function () {
-      $("+.directory_children",this).slideToggle();
+      $("+.area",this).slideToggle();
       return false;
     });
   });

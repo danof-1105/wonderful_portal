@@ -1,16 +1,16 @@
 <ul class="directory">
   <li class="directory__item">
     <%= link_to "親ディレクトリ", documents_path, class: "link_color directory__item__link js-directory__item__link" %>
-    <ul class="directory_children">
+    <ul class="directory_children area">
       <li class="directory_children__item">
-        <%= link_to "子ディレクトリ1", documents_path, class: "link_color" %>
-        <ul class="directory_grandson">
+        <%= link_to "子ディレクトリ1", documents_path, class: "link_color js-directory__item__link" %>
+        <ul class="directory_grandson item area">
           <li class="directory_grandson__item">
-            <%= link_to "孫ディレクトリ1", documents_path, class: "link_color" %>
-            <ul class="directory_great_grandson">
+            <%= link_to "孫ディレクトリ1", documents_path, class: "link_color js-directory__item__link" %>
+            <ul class="directory_great_grandson area">
               <li class="directory_great_grandson__item">
-                <%= link_to "曾孫ディレクトリ1", documents_path, class: "link_color" %>
-                <ul class="directory_great_great_grandchild">
+                <%= link_to "曾孫ディレクトリ1", documents_path, class: "link_color js-directory__item__link" %>
+                <ul class="directory_great_great_grandchild area">
                   <li class="directory_great_great_grandchild__item">
                     <%= link_to "玄孫ディレクトリ", documents_path, class: "link_color" %>
                   </li>
@@ -30,15 +30,15 @@
         </ul>
       </li>
     </ul>
-    <ul class="directory_children">
+    <ul class="directory_children area">
       <li class="directory_children__item">
-        <%= link_to "子ディレクトリ2", documents_path, class: "link_color" %>
-        <ul class="directory_grandson">
+        <%= link_to "子ディレクトリ2", documents_path, class: "link_color js-directory__item__link" %>
+        <ul class="directory_grandson area">
           <li class="directory_grandson__item">
-            <%= link_to "孫ディレクトリ2-1", documents_path, class: "link_color" %>
+            <%= link_to "孫ディレクトリ2-1", documents_path, class: "link_color js-directory__item__link" %>
           </li>
-          <li class="directory_grandson__item">
-            <%= link_to "孫ディレクトリ2-2", documents_path, class: "link_color" %>
+          <li class="directory_grandson__item area">
+            <%= link_to "孫ディレクトリ2-2", documents_path, class: "link_color js-directory__item__link" %>
           </li>
           <li class="directory_grandson__item">
             <%= link_to "孫ディレクトリ2-3", documents_path, class: "link_color" %>
