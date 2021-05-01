@@ -2,13 +2,18 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
   end
-
+  def show
+    @document = Document.find(params[:id])
+    @directory = @document.user_directory.path.pluck(:name)
+  end
   def create
     # TODO: モック部、Devise実装後に修正必要
     current_user = User.first
     user_directory = UserDirectory.first
     example  = {owner: current_user, user_directory: user_directory}
     @document = current_user.documents.create!(document_params.merge(example))
+    flash[:success] = "documentを登録しました。"
+      redirect_to @document
   end
 
   def document_params
