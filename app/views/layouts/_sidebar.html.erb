@@ -1,18 +1,23 @@
+<%# 1階層 %>
 <ul class="directory">
   <li class="item">
     <%= link_to user_directories.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+      <%# 2階層目 %>
       <ul class="directory_children area">
         <% user_directories.children.each do |child| %>
           <li class="item">
             <%= link_to child.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+              <%# 3階層目 %>
               <ul class="directory_grandson area">
                 <% child.children.each do |grandson| %>
                   <li class="item">
                     <%= link_to grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                      <%# 4階層目 %>
                       <ul class="directory_great_grandson area">
                         <% grandson.children.each do |great_grandson| %>
                           <li class="item">
                             <%= link_to great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                              <%# 5階層目 %>
                               <ul class="directory_great_great_grandchild area">
                                 <% great_grandson.children.each do |great_great_grandchild| %>
                                   <li class="item">
