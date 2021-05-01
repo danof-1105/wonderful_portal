@@ -14,8 +14,7 @@ class DocumentsController < ApplicationController
     user_directory = UserDirectory.first
     example = { owner: current_user, user_directory: user_directory }
     @document = current_user.documents.create!(document_params.merge(example))
-    flash[:success] = "documentを登録しました。"
-    redirect_to @document
+    redirect_to @document, notice: "ドキュメントを登録しました。"
   end
 
   def document_params
