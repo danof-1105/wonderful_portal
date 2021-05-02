@@ -4,7 +4,7 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @document = Document.find(params[:id])
+    @document = current_user.have_documents.find(params[:id])
     @directory = @document.user_directory.path.pluck(:name)
   end
 
