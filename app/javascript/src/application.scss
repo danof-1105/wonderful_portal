@@ -36,3 +36,13 @@ ul {
   display: none;
 }
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+.documents_sidebar {
+  font-size: 0.8rem;
+  .fa-pen-nib {
+    font-size: 2.5rem;
+  }
+  .fa-book {
+    font-size: 2.5rem;
+  }
+}
