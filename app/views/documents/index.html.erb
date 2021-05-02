@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <%= render partial: "layouts/sidebar", collection: @user_directories, as: :user_directories %>
+      <%= render partial: "layouts/sidebar", locals: { user_directories: @user_directories } %>
     </div>
   </div>
   <div class="row">
