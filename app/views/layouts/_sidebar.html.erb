@@ -1,13 +1,39 @@
 <%# 1階層 %>
 <ul class="directory">
   <li class="item">
-    <% user_directories.each do |key, value| %>
-      <%= link_to key.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+    <% user_directories.each do |parent, children| %>
+      <%= link_to parent.name, documents_path, class: "link_color item__link js-directory__item__link" %>
         <%# 2階層目 %>
         <ul class="directory_children area">
+          <% children.each do |child, grand_children| %>
             <li class="item">
-              <%= link_to value.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+              <%= link_to child.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                <%# 3階層目 %>
+                <ul class="directory_grand_children area">
+                  <% grand_children.each do |grand_child, great_grandson| %>
+                    <li class="item">
+                      <%= link_to grand_child.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                        <%# 4階層目 %>
+                        <ul class="directory_great_grandson area">
+                          <% great_grandson.each do |great_grandson, great_great_grandson| %>
+                            <li class="item">
+                              <%= link_to great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                                <%# 5階層目 %>
+                                <ul class="directory_great_great_grandson area">
+                                  <% great_great_grandson.each do |great_great_grandson, v| %>
+                                    <li class="item">
+                                      <%= link_to great_great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                                    </li>
+                                  <% end %>
+                                </ul>
+                            </li>
+                          <% end %>
+                        </ul>
+                    </li>
+                  <% end %>
+                </ul>
             </li>
+          <% end %>
         </ul>
     <% end %>
   </li>
