@@ -10,6 +10,7 @@ import "channels";
 import "bootstrap";
 import "../src/application.scss";
 import marked from "marked";
+import "@fortawesome/fontawesome-free/js/all";
 
 window.marked = marked;
 
