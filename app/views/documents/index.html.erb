@@ -12,7 +12,17 @@
 </div>
 
 <% @documents.each do |document| %>
-<div>
-  <%= document.title %> <%= document.created_at %>
+<div class="container">
+  <div class="row border-bottom mt-5 pb-2">
+    <div class="col col-8">
+      <p><%= document.user_directory.name %></p>
+      <h2><%= document.title %></h2>
+    </div>
+
+    <div class="col col-4 text-center">
+      <div class="pt-3">作成日:<%= document.created_at.strftime('%Y年%m月%d日') %></div>
+      <div class>更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
+    </div>
+  </div>
 </div>
 <% end %>
