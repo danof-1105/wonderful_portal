@@ -2,27 +2,28 @@
 <ul class="directory">
   <li class="item">
     <% user_directories.each do |parent, children| %>
-      <%= link_to parent.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+      <%= link_to parent.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
         <%# 2階層目 %>
         <ul class="directory_children area">
+        <div id="directory_document"></div> <%# ここで子ディレクトリに含まれるドキュメントが表示される %>
           <% children.each do |child, grand_children| %>
             <li class="item">
-              <%= link_to child.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+              <%= link_to child.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                 <%# 3階層目 %>
                 <ul class="directory_grand_children area">
                   <% grand_children.each do |grand_child, great_grandson| %>
                     <li class="item">
-                      <%= link_to grand_child.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                      <%= link_to grand_child.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                         <%# 4階層目 %>
                         <ul class="directory_great_grandson area">
                           <% great_grandson.each do |great_grandson, great_great_grandson| %>
                             <li class="item">
-                              <%= link_to great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                              <%= link_to great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                                 <%# 5階層目 %>
                                 <ul class="directory_great_great_grandson area">
                                   <% great_great_grandson.each do |great_great_grandson, v| %>
                                     <li class="item">
-                                      <%= link_to great_great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link" %>
+                                      <%= link_to great_great_grandson.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                                     </li>
                                   <% end %>
                                 </ul>
