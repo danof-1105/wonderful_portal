@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <%= javascript_pack_tag 'documents/index' %>
 
 <div class="container">
@@ -11,19 +12,36 @@
   </div>
 </div>
 
+=======
+<div class="container mt-4 pb-2 border-bottom">
+  📘
+  <%= @documents[0].user_directory.name %>
+</div>
+>>>>>>> 95cd71d (feat:index.html.erbファイルの修正)
 <% @documents.each do |document| %>
 <div class="container">
-  <div class="row  border-end border-top mt-4 pt-3 pb-0">
-    <div class="col col-8">
-      <p><%= document.user_directory.name %></p>
-      <h2><%= document.title %></h2>
+  <div class="row  border-bottom mt-2 pt-1 pb-0">
+    <div class="col col-8 mt-4">
+      <p><%= document.title %>　　<%= link_to "" %>　<%= link_to "🗑" %></p>
     </div>
 
-    <div class="col col-4 text-center">
-      <div class="pt-3">作成日:<%= document.created_at.strftime('%Y年%m月%d日') %></div>
-      <div class>更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
+    <div class="col col-4 text-center mt-4">
+      <div class>作成者:<%= document.writer.name %>　更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
     </div>
   </div>
 </div>
 <% end %>
-<%= paginate @document %>
+
+<div class="container mt-3">
+  <div class="row justify-content-md-center">
+    <nav aria-label="...">
+      <ul class="pagination pagination-sm">
+        <li class="page-item disabled pl-2"><a class="page-link" href="?page=1" tabindex="-1">1</a></li>
+        <li class="page-item pl-2"><a class="page-link" href="?page=2">2</a></li>
+        <li class="page-item pl-2"><a class="page-link" href="?page=3">3</a></li>
+        <li class="page-item pl-2"><a class="page-link" href="?page=4">4</a></li>
+        <li class="page-item pl-2"><a class="page-link" href="?page=5">5</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
