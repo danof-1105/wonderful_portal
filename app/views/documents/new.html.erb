@@ -1,11 +1,15 @@
-<%= form_with model:@document do |f| %>
+<%= form_with model:@document, local: true do |f| %>
   <div class='form-group'>
     <%= f.label :タイトル %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
   <div class='form-group'>
     <%= f.label :内容 %>
-    <%= f.text_area :explanation, rows: 5, class: 'form-control' %>
+    <%= f.text_area :body, rows: 5, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :画像 %>
+    <%= f.file_field :images, multiple: true %>
   </div>
   <%= f.submit '登録', class: 'btn btn-success' %>
 <% end %>

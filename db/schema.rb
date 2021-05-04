@@ -60,14 +60,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_061604) do
     t.index ["user_id"], name: "index_community_users_on_user_id"
   end
 
-  create_table "document_images", force: :cascade do |t|
-    t.string "image", null: false
-    t.bigint "document_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["document_id"], name: "index_document_images_on_document_id"
-  end
-
   create_table "documents", force: :cascade do |t|
     t.string "title", null: false
     t.text "body"
@@ -75,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_061604) do
     t.bigint "writer_id", null: false
     t.string "owner_type", null: false
     t.bigint "owner_id", null: false
+    t.json "images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_type", "owner_id"], name: "index_documents_on_owner"
@@ -113,7 +106,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_061604) do
   add_foreign_key "community_directory_documents", "documents"
   add_foreign_key "community_users", "communities"
   add_foreign_key "community_users", "users"
-  add_foreign_key "document_images", "documents"
   add_foreign_key "documents", "user_directories"
   add_foreign_key "documents", "users", column: "writer_id"
   add_foreign_key "user_directories", "users"

@@ -4,6 +4,7 @@
 #
 #  id                :bigint           not null, primary key
 #  body              :text
+#  images            :json
 #  owner_type        :string           not null
 #  title             :string           not null
 #  created_at        :datetime         not null
