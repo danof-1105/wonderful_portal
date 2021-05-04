@@ -35,3 +35,23 @@ ul {
 .area {
   display: none;
 }
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+.root_container {
+  display: flex;
+  width: 100%;
+  .big_container {
+    width: 100%;
+  }
+  .documents_sidebar {
+    font-size: 0.8rem;
+    width: 80px;
+    min-height: 100vh;
+
+    .fa-pen-nib {
+      font-size: 2.5rem;
+    }
+    .fa-book {
+      font-size: 2.5rem;
+    }
+  }
+}
