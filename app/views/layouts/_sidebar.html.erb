@@ -1,26 +1,26 @@
 <%# 1階層 %>
 <ul class="directory">
   <li class="item">
-    <% user_directories.each do |first_directory, second_lavel| %>
+    <% user_directories.each do |first_directory, second_directories| %>
       <%= link_to first_directory.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
         <%# 2階層目 %>
         <ul class="directory_children area">
-          <% second_lavel.each do |second_directory, third_lavel| %>
+          <% second_directories.each do |second_directory, third_directories| %>
             <li class="item">
               <%= link_to second_directory.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                 <%# 3階層目 %>
                 <ul class="directory_grand_children area">
-                  <% third_lavel.each do |third_directory, fourth_lavel| %>
+                  <% third_directories.each do |third_directory, fourth_directories| %>
                     <li class="item">
                       <%= link_to third_directory.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                         <%# 4階層目 %>
                         <ul class="directory_great_grandson area">
-                          <% fourth_lavel.each do |fourth_directory, fifth_lavel| %>
+                          <% fourth_directories.each do |fourth_directory, fifth_directories| %>
                             <li class="item">
                               <%= link_to fourth_directory.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                                 <%# 5階層目 %>
                                 <ul class="directory_great_great_grandson area">
-                                  <% fifth_lavel.each do |fifth_directory, sixth_lavel| %>
+                                  <% fifth_directories.each do |fifth_directory, _| %>
                                     <li class="item">
                                       <%= link_to fifth_directory.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
                                     </li>
