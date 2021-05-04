@@ -14,15 +14,18 @@
 
 =======
 <div class="container mt-4 pb-2 border-bottom">
-  📘
   <%= @documents[0].user_directory.name %>
 </div>
+<<<<<<< HEAD
 >>>>>>> 95cd71d (feat:index.html.erbファイルの修正)
+=======
+
+>>>>>>> 90f296a (feat:記事一覧画面の実装)
 <% @documents.each do |document| %>
 <div class="container">
   <div class="row  border-bottom mt-2 pt-1 pb-0">
-    <div class="col col-8 mt-4">
-      <p><%= document.title %>　　<%= link_to "✐" %>　<%= link_to "🗑" %></p>
+    <div class="col col-8 pl-4 mt-4">
+      <p><%= document.title %></p>
     </div>
 
     <div class="col col-4 text-center mt-4">
@@ -31,25 +34,3 @@
   </div>
 </div>
 <% end %>
-
-<div class="row justify-content-md-center mt-3">
-  <nav aria-label="Page navigation example">
-    <ul class="pagination">
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-          <span class="sr-only">Previous</span>
-        </a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#" ,documents_path>1</a></li>
-      <li class=" page-item"><a class="page-link" href="#" ,documents_path>2</a></li>
-      <li class="page-item"><a class="page-link" href="#" ,documents_path>3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-          <span class="sr-only">Next</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-</div>
