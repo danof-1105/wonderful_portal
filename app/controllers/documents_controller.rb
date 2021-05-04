@@ -3,6 +3,11 @@ class DocumentsController < ApplicationController
     @document = Document.new
   end
 
+  def index
+    @user_directories = UserDirectory.arrange
+    @documents = Document.all # 仮で定義しているため後で削除
+  end
+
   def show
     @document = current_user.have_documents.find(params[:id])
     @directory = @document.user_directory.path.pluck(:name)

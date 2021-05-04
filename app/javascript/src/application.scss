@@ -1,1 +1,37 @@
 @import '~bootstrap/scss/bootstrap';
+
+ul {
+  list-style: none;
+}
+
+// ディレクトリ部分スタイル
+.link_color {
+  text-decoration: none;
+  border: none;
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.directory {
+  margin-bottom: 0;
+  padding-left: 0;
+  background: rgb(148, 144, 144);
+}
+
+.item {
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  &__link {
+    display: block;
+    padding: 1rem;
+  }
+}
+
+.area {
+  display: none;
+}
