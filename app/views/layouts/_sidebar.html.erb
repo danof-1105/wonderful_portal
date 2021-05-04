@@ -5,7 +5,6 @@
       <%= link_to parent.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
         <%# 2階層目 %>
         <ul class="directory_children area">
-        <div id="directory_document"></div> <%# ここで子ディレクトリに含まれるドキュメントが表示される %>
           <% children.each do |child, grand_children| %>
             <li class="item">
               <%= link_to child.name, documents_path, class: "link_color item__link js-directory__item__link", remote: true %>
