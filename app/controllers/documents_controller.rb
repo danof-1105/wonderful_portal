@@ -6,6 +6,7 @@ class DocumentsController < ApplicationController
   def index
     # @user_directories = UserDirectory.where(ancestry: nil)
     @user_directories = UserDirectory.arrange
+    @documents = Document.all
   end
 
   def show
