@@ -11,18 +11,16 @@
 </head>
 
 <body>
-  <div class="root_container">
+  <<<<<<< HEAD <div class="root_container">
     <% if user_signed_in? %>
     <%= render "layouts/documents_sidebar" %>
     <% end %>
     <div class="big_container">
       <%= yield %>
     </div>
-  </div>
+    </div>
 </body>
 
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> 95cd71d (feat:index.html.erbファイルの修正)
+
+<%= yield %>

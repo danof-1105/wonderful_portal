@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-<%= javascript_pack_tag 'documents/index' %>
-
-<div class="container">
+<%= javascript_pack_tag 'documents/index' %> <div class="container">
   <div class="row">
     <div class="col-4">
       <%= render partial: "layouts/sidebar", locals: { user_directories: @user_directories } %>
@@ -12,15 +9,10 @@
   </div>
 </div>
 
-=======
 <div class="container mt-4 pb-2 border-bottom">
   <%= @documents[0].user_directory.name %>
 </div>
-<<<<<<< HEAD
->>>>>>> 95cd71d (feat:index.html.erbファイルの修正)
-=======
 
->>>>>>> 90f296a (feat:記事一覧画面の実装)
 <% @documents.each do |document| %>
 <div class="container">
   <div class="row  border-bottom mt-2 pt-1 pb-0">
