@@ -1,5 +1,3 @@
-PER_PAGE = 7
-
 class DocumentsController < ApplicationController
   def new
     @document = Document.new
@@ -9,7 +7,7 @@ class DocumentsController < ApplicationController
     current_user = User.first
     @user_directories = UserDirectory.arrange
     @documents = current_user.have_documents.limit(7)
-    @document = @documents.page(params[:page]).per(PER_PAGE)
+    @document = @documents.page(params[:page])
   end
 
   def show

@@ -1,4 +1,6 @@
-<%= javascript_pack_tag 'documents/index' %> <div class="container">
+<%= javascript_pack_tag 'documents/index' %>
+
+<div class="container">
   <div class="row">
     <div class="col-4">
       <%= render partial: "layouts/sidebar", locals: { user_directories: @user_directories } %>
@@ -16,11 +18,11 @@
 <% @documents.each do |document| %>
 <div class="container">
   <div class="row  border-bottom mt-2 pt-1 pb-0">
-    <div class="col col-8 pl-4 mt-4">
-      <p><%= document.title %></p>
+    <div class="col-8 pl-4 mt-4">
+      <p><%= link_to document.title, document %></p>
     </div>
 
-    <div class="col col-4 text-center mt-4">
+    <div class="col-4 text-center mt-4">
       <div class>作成者:<%= document.writer.name %>　更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
     </div>
   </div>
