@@ -1,5 +1,5 @@
 <%# 1階層 %>
-<ul class="directory">
+<ul class="directory h-100">
   <li class="item">
     <% user_directories.each do |first_directory, second_directories| %>
       <%= link_to first_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
