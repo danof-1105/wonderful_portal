@@ -4,7 +4,6 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    current_user = User.first
     @user_directories = UserDirectory.arrange
     @documents = current_user.have_documents.limit(7)
     @document = @documents.page(params[:page])
