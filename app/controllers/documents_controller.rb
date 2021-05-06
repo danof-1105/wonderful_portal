@@ -5,7 +5,8 @@ class DocumentsController < ApplicationController
 
   def index
     @user_directories = UserDirectory.arrange
-    @documents = Document.all # 仮で定義しているため後で削除
+    @documents = current_user.have_documents.limit(7)
+    @document = @documents.page(params[:page])
   end
 
   def show
