@@ -6,7 +6,7 @@ class DocumentsController < ApplicationController
   def index
     @user_directories = UserDirectory.arrange
     @documents = current_user.have_documents.limit(7)
-    @document = @documents.page(params[:page])
+    @document = @documents.where(user_directory_id: params[:directory_id])
   end
 
   def show
