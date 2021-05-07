@@ -4,7 +4,6 @@
 #
 #  id                :bigint           not null, primary key
 #  body              :text
-#  images            :json
 #  owner_type        :string           not null
 #  title             :string           not null
 #  created_at        :datetime         not null
@@ -33,5 +32,4 @@ class Document < ApplicationRecord
   belongs_to :owner, polymorphic: true
 
   validates :title, length: { maximum: 50 }, presence: true
-  mount_uploader :images, ImageUploader
 end
