@@ -2,27 +2,27 @@
 <ul class="directory h-100">
   <li class="item">
     <% user_directories.each do |first_directory, second_directories| %>
-      <%= link_to first_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
+      <%= link_to first_directory.name, documents_path(directory_id: first_directory.id), class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
         <%# 2階層目 %>
         <ul class="directory_children area">
           <% second_directories.each do |second_directory, third_directories| %>
             <li class="item">
-              <%= link_to second_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
+              <%= link_to second_directory.name, documents_path(directory_id: second_directory.id), class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
                 <%# 3階層目 %>
                 <ul class="directory_grand_children area">
                   <% third_directories.each do |third_directory, fourth_directories| %>
                     <li class="item">
-                      <%= link_to third_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
+                      <%= link_to third_directory.name, documents_path(directory_id: third_directory.id), class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
                         <%# 4階層目 %>
                         <ul class="directory_great_grandson area">
                           <% fourth_directories.each do |fourth_directory, fifth_directories| %>
                             <li class="item">
-                              <%= link_to fourth_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
+                              <%= link_to fourth_directory.name, documents_path(directory_id: fourth_directory.id), class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
                                 <%# 5階層目 %>
                                 <ul class="directory_great_great_grandson area">
                                   <% fifth_directories.each do |fifth_directory, _| %>
                                     <li class="item">
-                                      <%= link_to fifth_directory.name, documents_path, class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
+                                      <%= link_to fifth_directory.name, documents_path(directory_id: fifth_directory.id), class: "link_color item__link js-directory__item__link border-bottom border-dark", remote: true %>
                                     </li>
                                   <% end %>
                                 </ul>
