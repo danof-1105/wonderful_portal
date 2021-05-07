@@ -19,11 +19,18 @@
 <div class="container">
   <div class="row  border-bottom mt-2 pt-1 pb-0">
     <div class="col-8 pl-4 mt-4">
-      <p><%= link_to document.title, document %></p>
+      <p>
+        <%= link_to document.title, document %>
+        <%= link_to documents_path, method: :delete do %>
+        <i class="fas fa-trash"></i>
+        <% end %>
+      </p>
     </div>
 
     <div class="col-4 text-center mt-4">
-      <div class>作成者:<%= document.writer.name %>　更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
+      <div class>
+        作成者:<%= document.writer.name %> 更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %>
+      </div>
     </div>
   </div>
 </div>
