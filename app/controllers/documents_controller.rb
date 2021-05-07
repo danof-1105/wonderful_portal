@@ -24,7 +24,7 @@ class DocumentsController < ApplicationController
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
 
-    def destory
+  def destory
     @document = current_user.have_documents.find(params[:id])
     @document.destory!
     redirect_to @document, notice: "ドキュメントを削除しました。"
