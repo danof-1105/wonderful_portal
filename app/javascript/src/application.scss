@@ -83,4 +83,12 @@ p code, li code {
   border: solid 1px #d6dde4;
 }
 
+.preview ul {
+  list-style: disc;
+}
+
+#content ul {
+  list-style: disc;
+}
+
 @import 'highlight.js/styles/railscasts.css';
