@@ -15,43 +15,18 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    # TODO: モック部、Devise実装後に修正必要
-    title_with_directory = params[:document][:title_with_directory].split("/")
-    title = title_with_directory[-1]
-    case title_with_directory.length
-    when 1
-      if current_user.user_directories.exists?(name: "no category")
-        add_params = { title: title, owner: current_user, user_directory: current_user.user_directories.find_by(name: "no category") }
-        @document = current_user.documents.create!(document_params.merge(add_params))
-      else
-        current_user.user_directories.create!(name: "no category")
-        add_params = { title: title, owner: current_user, user_directory: current_user.user_directories.find_by(name: "no category") }
-        @document = current_user.documents.create!(document_params.merge(add_params))
+    directories_and_title = params[:document][:title_with_directory].split("/")
+    title = directories_and_title.pop
+    ActiveRecord::Base.transaction do
+      first_directory_name = directories_and_title.blank? ? "指定なし" : directories_and_title[0]
+      prev_directory = current_user.user_directories.find_or_create_by!(name: first_directory_name, ancestry: nil)
+      directories_and_title.each_with_index do |directory_name, i|
+        next if i == 0
+
+        prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
       end
-    when 2
-      parents_directory = title_with_directory[0]
-      if current_user.user_directories.exists?(name: parents_directory)
-        add_params = { title: title, owner: current_user, user_directory: current_user.user_directories.find_by(name: parents_directory) }
-        @document = current_user.documents.create!(document_params.merge(add_params))
-      else
-        current_user.user_directories.create!(name: parents_directory)
-        add_params = { title: title, owner: current_user, user_directory: current_user.user_directories.find_by(name: parents_directory) }
-        @document = current_user.documents.create!(document_params.merge(add_params))
-      end
-    when 3
-      parents_directory = title_with_directory[0]
-      children_directory = title_with_directory[1]
-      if current_user.user_directories.exists?(name: parents_directory)
-        add_params = { title: title, owner: current_user, user_directory: current_user.user_directories.find_by(name: children_directory) }
-        @document = current_user.documents.create!(document_params.merge(add_params))
-      else
-        current_user.user_directories.create!(name: parents_directory)
-      end
-
-
-
-
-
+      add_params = { title: title, owner: current_user, user_directory: prev_directory }
+      @document = current_user.documents.create!(document_params.merge(add_params))
     end
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
