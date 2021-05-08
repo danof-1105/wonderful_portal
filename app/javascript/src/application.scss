@@ -60,9 +60,14 @@ ul {
   width: 80px;
 }
 .input_body {
-  box-sizing: border-box;
-  min-height: calc(100vh - 300px);
+  min-height: calc(100vh - 470px);
 }
+
+.preview {
+  height: calc(100% - 135px);
+
+}
+
 pre {
   margin: 1em 0;
   padding: 1em;
