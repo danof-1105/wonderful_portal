@@ -17,6 +17,7 @@ marked.setOptions({
   highlight: function (code) {
     return hljs.highlightAuto(code).value;
   },
+  breaks: true,
 });
 
 window.marked = marked;
