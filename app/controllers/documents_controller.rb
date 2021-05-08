@@ -14,7 +14,7 @@ class DocumentsController < ApplicationController
     @directory = @document.user_directory.path.pluck(:name)
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     directories_and_title = params[:document][:title_with_directory].split("/")
     title = directories_and_title.pop
     ActiveRecord::Base.transaction do
