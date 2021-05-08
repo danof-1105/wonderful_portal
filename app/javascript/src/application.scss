@@ -55,3 +55,44 @@ ul {
     }
   }
 }
+
+.create_docuent_button {
+  width: 80px;
+}
+.input_body {
+  min-height: calc(100vh - 470px);
+}
+
+.preview {
+  height: calc(100% - 135px);
+
+}
+
+pre {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 5px;
+  color: white;
+  background: #232324;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+p code, li code {
+  display: inline-block;
+  padding: 0.1em 0.25em;
+  color: #444;
+  background-color: #e7edf3;
+  border-radius: 3px;
+  border: solid 1px #d6dde4;
+}
+
+.preview ul {
+  list-style: disc;
+}
+
+#content ul {
+  list-style: disc;
+}
+
+@import 'highlight.js/styles/railscasts.css';

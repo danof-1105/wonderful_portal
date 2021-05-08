@@ -1,6 +1,6 @@
 class DocumentsController < ApplicationController
   def new
-    @document = Document.new
+    @document = current_user.documents.new
   end
 
   def index
@@ -16,10 +16,9 @@ class DocumentsController < ApplicationController
 
   def create
     # TODO: モック部、Devise実装後に修正必要
-    current_user = User.first
-    user_directory = UserDirectory.first
-    example = { owner: current_user, user_directory: user_directory }
-    @document = current_user.documents.create!(document_params.merge(example))
+    user_directory = current_user.user_directories.first
+    add_params = { owner: current_user, user_directory: user_directory }
+    @document = current_user.documents.create!(document_params.merge(add_params))
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
 
