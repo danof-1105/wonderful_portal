@@ -56,14 +56,13 @@ ul {
   }
 }
 
-
 .create_docuent_button {
   width: 80px;
 }
 .input_body {
-  resize: none;
+  box-sizing: border-box;
+  min-height: calc(100vh - 300px);
 }
-
 pre {
   margin: 1em 0;
   padding: 1em;

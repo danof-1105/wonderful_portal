@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container create_document_container">
   <div class="row border-bottom mt-5">
     <h2>
       <i class="fas fa-pen-nib text-primary"></i>
@@ -9,7 +9,7 @@
   <%= form_with model:@document do |f| %>
   <div class="row">
     <div class="col">
-      <div class='form-group mt-3'>
+      <div class='form-group mt-3 pr-3'>
         <%= f.label :タイトル %>
         <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
       </div>
@@ -19,7 +19,7 @@
     <div class="col-6 border-right">
       <div class='form-group'>
         <%= f.label :本文 %>
-        <%= f.text_area :body, rows: 10, class: 'form-control input_body', id: 'markdown_editor_textarea', placeholder: '本文を書いていきましょう' %>
+        <%= f.text_area :body, rows: 15, class: 'form-control input_body', id: 'markdown_editor_textarea', placeholder: '本文を書いていきましょう' %>
       </div>
       <div class="text-right">
         <%= f.submit '作成', class: 'btn btn-primary create_docuent_button' %>
@@ -28,7 +28,7 @@
     </div>
     <div class="col-6">
       <div>プレビュー</div>
-      <div id="markdown_preview" class="preview border"></div>
+      <div id="markdown_preview" class="preview border h-100"></div>
     </div>
   </div>
 </div>
