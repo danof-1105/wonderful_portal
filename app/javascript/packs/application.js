@@ -10,9 +10,20 @@ import "channels";
 import "bootstrap";
 import "../src/application.scss";
 import marked from "marked";
+import "@fortawesome/fontawesome-free/js/all";
+import hljs from "highlight.js";
+
+marked.setOptions({
+  highlight: function (code) {
+    return hljs.highlightAuto(code).value;
+  },
+  breaks: true,
+});
 
 window.marked = marked;
 
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+window.jQuery = $;
+window.$ = $;

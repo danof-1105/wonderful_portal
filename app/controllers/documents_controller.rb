@@ -1,6 +1,12 @@
 class DocumentsController < ApplicationController
   def new
-    @document = Document.new
+    @document = current_user.documents.new
+  end
+
+  def index
+    @user_directories = UserDirectory.arrange
+    @documents = current_user.have_documents.limit(7)
+    @document = @documents.page(params[:page])
   end
 
   def show
@@ -30,6 +36,7 @@ class DocumentsController < ApplicationController
       owner: current_user,
       user_directory: user_directory,
     }
+
 
     document = current_user.documents.create!(hoge)
     redirect_to document, notice: "ドキュメントを登録しました。"

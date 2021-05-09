@@ -1,1 +1,98 @@
 @import '~bootstrap/scss/bootstrap';
+
+ul {
+  list-style: none;
+}
+
+// ディレクトリ部分スタイル
+.link_color {
+  text-decoration: none;
+  border: none;
+  color: #fff;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.directory {
+  margin-bottom: 0;
+  padding-left: 0;
+  background: rgb(148, 144, 144);
+}
+
+.item {
+  cursor: pointer;
+  display: block;
+  position: relative;
+
+  &__link {
+    display: block;
+    padding: 1rem;
+  }
+}
+
+.area {
+  display: none;
+}
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+.root_container {
+  display: flex;
+  width: 100%;
+  .big_container {
+    width: 100%;
+  }
+  .documents_sidebar {
+    font-size: 0.8rem;
+    width: 80px;
+    min-height: 100vh;
+
+    .fa-pen-nib {
+      font-size: 2.5rem;
+    }
+    .fa-book {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.create_docuent_button {
+  width: 80px;
+}
+.input_body {
+  min-height: calc(100vh - 470px);
+}
+
+.preview {
+  height: calc(100% - 135px);
+
+}
+
+pre {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: 5px;
+  color: white;
+  background: #232324;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+p code, li code {
+  display: inline-block;
+  padding: 0.1em 0.25em;
+  color: #444;
+  background-color: #e7edf3;
+  border-radius: 3px;
+  border: solid 1px #d6dde4;
+}
+
+.preview ul {
+  list-style: disc;
+}
+
+#content ul {
+  list-style: disc;
+}
+
+@import 'highlight.js/styles/railscasts.css';
