@@ -28,7 +28,7 @@ class DocumentsController < ApplicationController
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def create
     # Description: タイトルの文字列を / 毎に配列に直す
-    directories_and_title = params[:document][:title_with_directory].split("/")
+    directories_and_title = params[:document][:title].split("/")
     # Description: タイトル名は配列の一番後ろなので pop で取り出す
     title = directories_and_title.pop
     ActiveRecord::Base.transaction do
@@ -60,7 +60,6 @@ class DocumentsController < ApplicationController
         body: body,
         owner: current_user,
         user_directory: prev_directory,
-        title_with_directory: directories_and_title,
       }
 
       @document = current_user.documents.create!(document_elements)
@@ -68,4 +67,21 @@ class DocumentsController < ApplicationController
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+
+  def update
+    directories_and_title = params[:document][:title_with_directory].split("/")
+    title = directories_and_title.pop
+    ActiveRecord::Base.transaction do
+      first_directory_name = directories_and_title.blank? ? "指定なし" : directories_and_title[0]
+      prev_directory = current_user.user_directories.find_or_create_by!(name: first_directory_name, ancestry: nil)
+      directories_and_title.each_with_index do |directory_name, i|
+        next if i == 0
+        prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
+      end
+      add_params = { title: title, owner: current_user, user_directory: prev_directory }
+      @document = current_user.have_documents.find(params[:id])
+      @document.update!(document_params.merge(add_params))
+    end
+    redirect_to @document, notice: "ドキュメントを更新しました。"
+  end
 end
