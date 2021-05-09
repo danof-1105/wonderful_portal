@@ -10,6 +10,7 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 erd.pdf
+/public/uploads
 
 # Ignore all logfiles and tempfiles.
 /log/*

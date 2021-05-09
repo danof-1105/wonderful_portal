@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <%= f.label :画像 %>
-    <%= f.file_field :image_path %>
+    <%= f.file_field :image, multiple: true %>
   </div>
   <%= f.submit '登録', class: 'btn btn-success' %>
 <% end %>

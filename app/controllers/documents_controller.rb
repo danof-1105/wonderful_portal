@@ -14,11 +14,13 @@ class DocumentsController < ApplicationController
     current_user = User.first
     user_directory = UserDirectory.first
     example = { owner: current_user, user_directory: user_directory }
-    image = params[:document][:image_path]
+    image = params[:document][:image]
     if image.present?
-      document_image = DocumentImage.create!(document_image_params)
+      image.each do |image|
+        @document_image = DocumentImage.create!(document_image_params)
+      end
       title = params[:document][:title]
-      body = params[:document][:body] << ("\n ![#{document_image.image_path}]")
+      body = params[:document][:body] <<  "\n ![#{@document_image.image}](#{@document_image.image_urls})"
       document = current_user.documents.create!(title: title, body: body, owner: current_user, user_directory: user_directory)
     else
       document = current_user.documents.create!(document_params.merge(example))
@@ -31,6 +33,6 @@ class DocumentsController < ApplicationController
   end
 
   def document_image_params
-    params.require(:document).permit(:image_path)
+    params.require(:document).permit({image:[]})
   end
 end
