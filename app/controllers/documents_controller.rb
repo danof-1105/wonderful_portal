@@ -5,6 +5,9 @@ class DocumentsController < ApplicationController
 
   def edit
     @document = current_user.have_documents.find(params[:id])
+    @all_directories = @document.user_directory.path.pluck(:name).join("/")
+    @title = @document.title
+    @body = @document.body
   end
 
   def index
