@@ -16,9 +16,6 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    # TODO: モック部、Devise実装後に修正必要
-    current_user = User.first
-    user_directory = UserDirectory.first
     images = params[:document][:image]
     title = params[:document][:title]
     body = params[:document][:body]
@@ -30,14 +27,14 @@ class DocumentsController < ApplicationController
       end
     end
 
-    hoge = {
+    document_elements = {
       title: title,
       body: body,
       owner: current_user,
       user_directory: user_directory,
     }
 
-    document = current_user.documents.create!(hoge)
+    document = current_user.documents.create!(document_elements)
     redirect_to document, notice: "ドキュメントを登録しました。"
   end
 end
