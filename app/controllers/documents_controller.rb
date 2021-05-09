@@ -5,8 +5,12 @@ class DocumentsController < ApplicationController
 
   def index
     @user_directories = UserDirectory.arrange
-    @documents = current_user.have_documents.limit(7)
-    @document = @documents.page(params[:page])
+    if params[:directory_id]
+      target_directory = current_user.user_directories.find(params[:directory_id])
+      target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
+    end
+    # HACK: 分かりやすいコードに改善余地あり
+    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
   end
 
   def show
