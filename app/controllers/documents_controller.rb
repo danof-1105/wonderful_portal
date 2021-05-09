@@ -3,6 +3,10 @@ class DocumentsController < ApplicationController
     @document = current_user.documents.new
   end
 
+  def edit
+    @document = current_user.have_documents.find(params[:id])
+  end
+
   def index
     @user_directories = UserDirectory.arrange
     if params[:directory_id]
