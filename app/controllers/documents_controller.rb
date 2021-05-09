@@ -10,7 +10,6 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    current_user = User.first
     @document = current_user.have_documents.find(params[:id])
     @directory = @document.user_directory.path.pluck(:name)
   end
