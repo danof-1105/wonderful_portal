@@ -37,7 +37,6 @@ class DocumentsController < ApplicationController
       user_directory: user_directory,
     }
 
-
     document = current_user.documents.create!(hoge)
     redirect_to document, notice: "ドキュメントを登録しました。"
   end
