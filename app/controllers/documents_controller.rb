@@ -68,7 +68,7 @@ class DocumentsController < ApplicationController
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
-  def update
+  def update # rubocop:disable Metrics/AbcSize
     directories_and_title = params[:document][:title_with_directory].split("/")
     title = directories_and_title.pop
     ActiveRecord::Base.transaction do
@@ -76,9 +76,10 @@ class DocumentsController < ApplicationController
       prev_directory = current_user.user_directories.find_or_create_by!(name: first_directory_name, ancestry: nil)
       directories_and_title.each_with_index do |directory_name, i|
         next if i == 0
+
         prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
       end
-      add_params = { title: title, owner: current_user, user_directory: prev_directory }
+      add_params = { title: title, user_directory: prev_directory }
       @document = current_user.have_documents.find(params[:id])
       @document.update!(document_params.merge(add_params))
     end
