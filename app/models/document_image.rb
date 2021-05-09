@@ -8,5 +8,5 @@
 #  updated_at :datetime         not null
 #
 class DocumentImage < ApplicationRecord
-  mount_uploaders :image, ImageUploader
+  mount_uploader :image, ImageUploader
 end
