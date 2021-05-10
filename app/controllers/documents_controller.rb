@@ -18,7 +18,8 @@ class DocumentsController < ApplicationController
     @directory = @document.user_directory.path.pluck(:name)
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+  def create
     # Description: タイトルの文字列を / 毎に配列に直す
     directories_and_title = params[:document][:title_with_directory].split("/")
     # Description: タイトル名は配列の一番後ろなので pop で取り出す
@@ -36,13 +37,28 @@ class DocumentsController < ApplicationController
         # Description: prev_directory の子ディレクトリを each で取り出したディレクトリ名でオーバーライドし保存 or 参照(find_or_create_by)を繰り返す
         prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
       end
-      add_params = { title: title, owner: current_user, user_directory: prev_directory }
-      @document = current_user.documents.create!(document_params.merge(add_params))
+
+      images = params[:document][:image]
+      body = params[:document][:body]
+
+      if images.present?
+        images.each do |image|
+          document_image = DocumentImage.create!(image: image)
+          body << "\n ![#{document_image.image_identifier}](#{document_image.image_url})"
+        end
+      end
+
+      document_elements = {
+        title: title,
+        body: body,
+        owner: current_user,
+        user_directory: prev_directory,
+        title_with_directory: directories_and_title,
+      }
+
+      @document = current_user.documents.create!(document_elements)
     end
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
-
-  def document_params
-    params.require(:document).permit(:title_with_directory, :body)
-  end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 end

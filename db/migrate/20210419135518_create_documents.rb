@@ -6,7 +6,6 @@ class CreateDocuments < ActiveRecord::Migration[6.1]
       t.references :user_directory, null: false, foreign_key: true
       t.references :writer, null: false, foreign_key: { to_table: :users }
       t.references :owner, polymorphic: true, null: false
-
       t.timestamps
     end
   end

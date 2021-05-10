@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_061604) do
+ActiveRecord::Schema.define(version: 2021_05_09_060919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,11 +61,9 @@ ActiveRecord::Schema.define(version: 2021_04_28_061604) do
   end
 
   create_table "document_images", force: :cascade do |t|
-    t.string "image", null: false
-    t.bigint "document_id", null: false
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["document_id"], name: "index_document_images_on_document_id"
   end
 
   create_table "documents", force: :cascade do |t|
@@ -113,7 +111,6 @@ ActiveRecord::Schema.define(version: 2021_04_28_061604) do
   add_foreign_key "community_directory_documents", "documents"
   add_foreign_key "community_users", "communities"
   add_foreign_key "community_users", "users"
-  add_foreign_key "document_images", "documents"
   add_foreign_key "documents", "user_directories"
   add_foreign_key "documents", "users", column: "writer_id"
   add_foreign_key "user_directories", "users"

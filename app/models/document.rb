@@ -25,7 +25,6 @@
 #
 class Document < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :document_images, dependent: :destroy
   has_many :community_directory_documents, dependent: :destroy
   has_many :community_directories, through: :community_directory_documents
   belongs_to :user_directory
