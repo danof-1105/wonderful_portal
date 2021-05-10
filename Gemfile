@@ -15,9 +15,9 @@ gem "puma", "~> 5.0"
 gem "rails", "~> 6.1.3"
 gem "rails-i18n", "~> 6.0"
 gem "sass-rails", ">= 6"
+gem "slack-notifier"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
-gem "slack-notifier"
 
 group :development, :test do
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
