@@ -24,4 +24,5 @@ class UserDirectory < ApplicationRecord
   has_ancestry
 
   validates :name, length: { maximum: 20 }, presence: true
+  validates :ancestry, ancestry: true, allow_nil: true
 end
