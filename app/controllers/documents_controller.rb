@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
       target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
     end
     # HACK: 分かりやすいコードに改善余地あり
-    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
+    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
   end
 
   def show
