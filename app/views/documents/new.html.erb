@@ -4,7 +4,7 @@
     <div class="col-12">
       <div class='form-group mt-3 pr-3'>
         <%= f.label :タイトル %>
-        <%= f.text_field :title_with_directory, class: 'form-control', placeholder: 'タイトル' %>
+        <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
       </div>
     </div>
   </div>
@@ -29,4 +29,4 @@
     </div>
   </div>
 </div>
-<%= javascript_pack_tag 'documents/new' %>
+<%= javascript_pack_tag 'documents/real_time_preview.js' %>
