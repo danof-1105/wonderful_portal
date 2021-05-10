@@ -1,0 +1,12 @@
+<%= javascript_pack_tag 'documents/index' %>
+
+<div class="row h-100">
+  <div class="col-3 pr-0">
+    <%= render partial: "layouts/sidebar", locals: { user_directories: @user_directories } %>
+  </div>
+  <div class="col-9 px-5">
+    <div id="directory_document">
+      <%= render partial: 'document', locals: { documents: @documents } %>
+    </div>
+  </div>
+</div>

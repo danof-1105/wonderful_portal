@@ -1,6 +1,5 @@
 *.rbc
 capybara-*.html
-.rspec
 /db/*.sqlite3
 /db/*.sqlite3-journal
 /db/*.sqlite3-[0-9]*
@@ -10,6 +9,8 @@ capybara-*.html
 *.orig
 rerun.txt
 pickle-email-*.html
+erd.pdf
+/public/uploads
 
 # Ignore all logfiles and tempfiles.
 /log/*
@@ -75,3 +76,9 @@ yarn-debug.log*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Ignore docker-compose.yml
+/docker-compose.yml
+
+# Ignore database.yml
+/config/database.yml
