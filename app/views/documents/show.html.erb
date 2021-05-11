@@ -4,9 +4,12 @@
       <div class="pb-2">
         <%= @directory.join("/") %>
       </div>
-      <h1>
+      <h1 class="d-inline">
         <%= @document.title %>
       </h1>
+      <%= link_to edit_document_path, class: "text-decoration-none" do %>
+      <i class="fas fa-pen-nib fa-2x pb-1 ml-2"></i><br>
+      <% end %>
     </div>
     <div class="col col-4 text-center">
       <div class="pt-3">
