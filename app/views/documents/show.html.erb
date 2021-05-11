@@ -8,7 +8,10 @@
         <%= @document.title %>
       </h1>
       <%= link_to edit_document_path, class: "text-decoration-none" do %>
-      <i class="fas fa-pen-nib fa-2x pb-1 ml-2"></i><br>
+      <i class="fas fa-pen-nib fa-2x pb-1 ml-2"></i>
+      <% end %>
+      <%= link_to document_path(@document), method: :delete do %>
+      <i class="fas fa-trash-alt fa-2x pb-1 ml-2"></i>
       <% end %>
     </div>
     <div class="col col-4 text-center">
