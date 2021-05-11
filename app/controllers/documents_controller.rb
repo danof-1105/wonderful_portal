@@ -71,6 +71,8 @@ class DocumentsController < ApplicationController
     directories_and_title = params[:document][:title].split("/")
     title = directories_and_title.pop
     body = params[:document][:body]
+    @document = current_user.have_documents.find(params[:id])
+    past_directories = @document.user_directory.path.reverse_order
     ActiveRecord::Base.transaction do
       first_directory_name = directories_and_title.blank? ? "指定なし" : directories_and_title[0]
       prev_directory = current_user.user_directories.find_or_create_by!(name: first_directory_name, ancestry: nil)
@@ -84,8 +86,15 @@ class DocumentsController < ApplicationController
         body: body,
         user_directory: prev_directory,
       }
-      @document = current_user.have_documents.find(params[:id])
       @document.update!(document_elements)
+      past_directories.each do |directory|
+        if directory.documents.blank? &&
+          directory.is_childless?
+          directory.destroy!
+        else
+          break
+        end
+      end
     end
     redirect_to @document, notice: "ドキュメントを更新しました。"
   end
