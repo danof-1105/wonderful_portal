@@ -67,7 +67,7 @@ class DocumentsController < ApplicationController
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
-  def update # rubocop:disable Metrics/AbcSize
+  def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
     directories_and_title = params[:document][:title].split("/")
     title = directories_and_title.pop
     body = params[:document][:body]
@@ -89,7 +89,7 @@ class DocumentsController < ApplicationController
       @document.update!(document_elements)
       past_directories.each do |directory|
         if directory.documents.blank? &&
-          directory.is_childless?
+           directory.is_childless?
           directory.destroy!
         else
           break
@@ -105,7 +105,7 @@ class DocumentsController < ApplicationController
     @document.destroy!
     past_directories.each do |directory|
       if directory.documents.blank? &&
-        directory.is_childless?
+         directory.is_childless?
         directory.destroy!
       else
         break
