@@ -5,8 +5,10 @@
     <%= render partial: "layouts/sidebar", locals: { user_directories: @user_directories } %>
   </div>
   <div class="col-9 px-5">
-    <div id="directory_document">
-      <%= render partial: 'document', locals: { documents: @documents } %>
-    </div>
+    <% if @documents.present? %>
+      <div id="directory_document">
+        <%= render partial: 'document', locals: { documents: @documents } %>
+      </div>
+    <% end %>
   </div>
 </div>
