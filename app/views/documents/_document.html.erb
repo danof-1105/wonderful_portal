@@ -8,6 +8,9 @@
     <div class="col-8 pl-4 mt-4">
       <span><%= link_to document.title, document %></span>
       <span>
+        <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
+        <i class="fas fa-pen ml-2"></i>
+        <% end %>
         <%= link_to document_path(document), method: :delete do %>
         <i class="fas fa-trash-alt ml-2"></i>
         <% end %>
