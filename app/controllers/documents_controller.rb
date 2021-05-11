@@ -89,4 +89,19 @@ class DocumentsController < ApplicationController
     end
     redirect_to @document, notice: "ドキュメントを更新しました。"
   end
+
+  def destroy
+    @document = current_user.have_documents.find(params[:id])
+    past_directories = @document.user_directory.path.reverse_order
+    @document.destroy!
+    past_directories.each do |directory|
+      if directory.documents.blank? &&
+        directory.is_childless?
+        directory.destroy!
+      else
+        break
+      end
+    end
+    redirect_to root_path, notice: "ドキュメントを削除しました"
+  end
 end
