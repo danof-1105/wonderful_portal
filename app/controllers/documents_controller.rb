@@ -87,7 +87,7 @@ class DocumentsController < ApplicationController
         user_directory: prev_directory,
       }
       @document.update!(document_elements)
-      sort_directories(past_directories)
+      destroy_no_content_directories(past_directories)
     end
     redirect_to @document, notice: "ドキュメントを更新しました。"
   end
@@ -97,14 +97,14 @@ class DocumentsController < ApplicationController
     past_directories = @document.user_directory.path.reverse_order
     ActiveRecord::Base.transaction do
       @document.destroy!
-      sort_directories(past_directories)
+      destroy_no_content_directories(past_directories)
     end
     redirect_to root_path, notice: "ドキュメントを削除しました"
   end
 
   private
 
-    def sort_directories(target_directories)
+    def destroy_no_content_directories(target_directories)
       target_directories.each do |directory|
         directory.do_not_have? ? directory.destroy! : break
       end
