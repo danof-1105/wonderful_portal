@@ -3,14 +3,22 @@
 </div>
 
 <% @documents.each do |document| %>
-  <div class="container px-0">
-    <div class="row  border-bottom mt-2 pt-1 pb-0">
-      <div class="col-8 pl-4 mt-4">
-        <p><%= link_to document.title, document %></p>
-      </div>
-      <div class="col-4 text-center mt-4 px-0">
-        <div class>作成者:<%= document.writer.name %>　更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
-      </div>
+<div class="container px-0">
+  <div class="row  border-bottom mt-2 pt-1 pb-0">
+    <div class="col-8 pl-4 mt-4">
+      <span><%= link_to document.title, document %></span>
+      <span>
+        <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
+        <i class="fas fa-pen ml-2"></i>
+        <% end %>
+        <%= link_to document_path(document), method: :delete do %>
+        <i class="fas fa-trash-alt ml-2"></i>
+        <% end %>
+      </span>
+    </div>
+    <div class="col-4 text-center mt-4 px-0">
+      <div class>作成者:<%= document.writer.name %>　更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
     </div>
   </div>
+</div>
 <% end %>

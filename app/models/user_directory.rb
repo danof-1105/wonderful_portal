@@ -25,4 +25,8 @@ class UserDirectory < ApplicationRecord
 
   validates :name, length: { maximum: 20 }, presence: true
   validates :ancestry, ancestry: true, allow_nil: true
+
+  def do_not_have?
+    self.documents.blank? && self.is_childless?
+  end
 end
