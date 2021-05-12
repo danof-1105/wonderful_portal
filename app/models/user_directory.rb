@@ -25,4 +25,15 @@ class UserDirectory < ApplicationRecord
 
   validates :name, length: { maximum: 20 }, presence: true
   validates :ancestry, ancestry: true, allow_nil: true
+
+
+  def self.delete_directories
+    each do |directory|
+      if directory.documents.blank? && directory.is_childless?
+       directory.destroy!
+     else
+       break
+     end
+    end
+  end
 end

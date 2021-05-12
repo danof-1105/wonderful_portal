@@ -101,15 +101,10 @@ class DocumentsController < ApplicationController
 
   def destroy
     @document = current_user.have_documents.find(params[:id])
-    past_directories = @document.user_directory.path.reverse_order
-    @document.destroy!
-    past_directories.each do |directory|
-      if directory.documents.blank? &&
-         directory.is_childless?
-        directory.destroy!
-      else
-        break
-      end
+    @past_directories = @document.user_directory.path.reverse_order
+    ActiveRecord::Base.transaction do
+      @document.destroy!
+      @past_directories.delete_directories
     end
     redirect_to root_path, notice: "ドキュメントを削除しました"
   end
