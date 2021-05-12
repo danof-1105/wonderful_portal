@@ -10,7 +10,7 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @user_directories = UserDirectory.arrange
+    @user_directories = current_user.user_directories.arrange
     if params[:directory_id]
       target_directory = current_user.user_directories.find(params[:directory_id])
       target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
