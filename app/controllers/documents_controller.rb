@@ -17,6 +17,7 @@ class DocumentsController < ApplicationController
     end
     # HACK: 分かりやすいコードに改善余地あり
     @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
+    @current_directory_name = target_directory&.name || "ドキュメント一覧"
   end
 
   def show
