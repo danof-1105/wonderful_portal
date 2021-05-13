@@ -96,3 +96,21 @@ p code, li code {
 }
 
 @import 'highlight.js/styles/railscasts.css';
+
+// サイドメニュー
+.btn-menu {
+  border: 0;
+}
+
+nav {
+  overflow-x: hidden;
+  width: 0;
+}
+
+nav.open-menu {
+  width: 100%;
+}
+
+.side-menu-item {
+  margin-top: 1rem;
+}
