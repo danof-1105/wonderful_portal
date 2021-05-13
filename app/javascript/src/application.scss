@@ -64,9 +64,10 @@ ul {
 }
 
 .preview {
-  overflow: auto;
+  overflow-wrap: break-word;
+  overflow-y: auto;
   min-height: 390px;
-  height: calc(100vh - 365px)
+  height: calc(100vh - 340px)
 }
 
 pre {
