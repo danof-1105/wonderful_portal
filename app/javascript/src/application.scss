@@ -107,22 +107,17 @@ p code, li code {
   width: calc(100% + 150px);
   position: absolute;
   bottom: 30px;
-
-  .row {
-    margin-right: 0;
-  }
 }
 
 .accordion-side {
-  width: 43%;
+  width: 35%;
   padding: 0;
 }
 
 .accordion-content-side {
   display: none;
   z-index: 1;
-  width: 57%;
+  width: 65%;
   white-space: nowrap;
   text-align: left;
-  margin-left: -10px;
 }
