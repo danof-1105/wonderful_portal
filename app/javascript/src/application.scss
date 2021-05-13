@@ -46,6 +46,7 @@ ul {
     font-size: 0.8rem;
     width: 80px;
     min-height: 100vh;
+    position: relative;
 
     .fa-pen-nib {
       font-size: 2.5rem;
@@ -104,6 +105,8 @@ p code, li code {
 
 .accordion-inner {
   width: calc(100% + 150px);
+  position: absolute;
+  bottom: 30px;
 
   .row {
     margin-right: 0;
