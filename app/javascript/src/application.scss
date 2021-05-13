@@ -64,8 +64,9 @@ ul {
 }
 
 .preview {
-  height: 95%;
-
+  overflow: auto;
+  min-height: 390px;
+  height: calc(100vh - 365px)
 }
 
 pre {
