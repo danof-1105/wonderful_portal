@@ -11,13 +11,15 @@
     ドキュメント一覧<br>
     <% end %>
   </div>
-  <div class="pt-4">
-    <button class="btn-menu bg-primary" ><i class="fas fa-ellipsis-h fa-4x" style="color: white;" ></i></button>
-    <nav>
-      <ul class="pl-0">
-        <li class="side-menu-item"><%= link_to 'ログアウト', destroy_user_session_path, class:"text-white", method: :delete %></li>
-      </ul>
-    </nav>
+  <div class="accordion-inner">
+    <div class="accordion-box-side row">
+      <button class="btn-menu bg-primary accordion-side" ><i class="fas fa-ellipsis-h fa-4x" style="color: white;" ></i></button>
+      <div class="accordion-content-side">
+        <button type="botton" class="btn btn-outline-dark btn-lg">
+          <%= link_to 'ログアウト', destroy_user_session_path, class:"text-danger", method: :delete %>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 <%= javascript_pack_tag 'sidebar' %>

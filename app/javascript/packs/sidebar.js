@@ -1,6 +1,3 @@
-const btn = document.querySelector('.btn-menu');
-const nav = document.querySelector('nav');
-
-btn.addEventListener('click', () => {
-  nav.classList.toggle('open-menu')
+$('.accordion-side').click(function () {
+  $(this).next().animate({ width: 'toggle' }, 'normal');
 });
