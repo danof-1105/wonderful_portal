@@ -46,6 +46,7 @@ ul {
     font-size: 0.8rem;
     width: 80px;
     min-height: 100vh;
+    position: relative;
 
     .fa-pen-nib {
       font-size: 2.5rem;
@@ -98,3 +99,27 @@ p code, li code {
 }
 
 @import 'highlight.js/styles/railscasts.css';
+
+// サイドメニュー
+.btn-menu {
+  border: 0;
+}
+
+.accordion-inner {
+  width: calc(100% + 150px);
+  position: absolute;
+  bottom: 30px;
+}
+
+.accordion-side {
+  width: 35%;
+  padding: 0;
+}
+
+.accordion-content-side {
+  display: none;
+  z-index: 1;
+  width: 65%;
+  white-space: nowrap;
+  text-align: left;
+}
