@@ -18,7 +18,7 @@
             <span class="ml-2">編集</span>
           </button>
           <% end %>
-          <%= link_to document_path(document), method: :delete do %>
+          <%= link_to document_path(document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
           <button type="button" class="btn btn-danger">
             <i class="fas fa-trash-alt"></i>
             <span class="ml-2">削除</span>
