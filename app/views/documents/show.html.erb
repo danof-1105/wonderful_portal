@@ -10,7 +10,7 @@
       <%= link_to edit_document_path, class: "text-decoration-none" do %>
       <i class="fas fa-pen fa-2x pb-1 ml-2"></i>
       <% end %>
-      <%= link_to document_path(@document), method: :delete do %>
+      <%= link_to document_path(@document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
       <i class="fas fa-trash-alt fa-2x pb-1 ml-2"></i>
       <% end %>
     </div>
