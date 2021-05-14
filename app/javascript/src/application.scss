@@ -98,6 +98,18 @@ p code, li code {
   list-style: disc;
 }
 
+table {
+ border-collapse: collapse;
+}
+th, td {
+  border: solid 1px black;
+  padding: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+}
+
+
 @import 'highlight.js/styles/railscasts.css';
 
 // サイドメニュー
