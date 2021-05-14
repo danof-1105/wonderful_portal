@@ -100,7 +100,7 @@ class DocumentsController < ApplicationController
       @document.destroy!
       destroy_no_content_directories(past_directories)
     end
-    redirect_to root_path, notice: "ドキュメントを削除しました"
+    redirect_to root_path, alert: "ドキュメントを削除しました"
   end
 
   private
