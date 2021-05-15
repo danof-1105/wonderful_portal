@@ -4,18 +4,28 @@
 </div>
 
 <% @documents.each do |document| %>
-<div class="container px-0 border-bottom">
-  <div class="row mt-2 pt-1 pb-0">
-    <div class="col-8 pl-4 mt-4">
-      <span><%= link_to document.title, document %></span>
-      <span>
-        <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
-        <i class="fas fa-pen ml-2"></i>
-        <% end %>
-        <%= link_to document_path(document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
-        <i class="fas fa-trash-alt ml-2"></i>
-        <% end %>
-      </span>
+<div class="container border-bottom">
+  <div class="row">
+    <div class="col-9 row my-4">
+      <div class="col-7">
+        <span class="documents_title"><%= link_to document.title.truncate(15), document, class: "text-decoration-none" %></span>
+      </div>
+      <div class="col-5">
+        <span>
+          <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-pen"></i>
+            <span class="ml-2">編集</span>
+          </button>
+          <% end %>
+          <%= link_to document_path(document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
+          <button type="button" class="btn btn-danger">
+            <i class="fas fa-trash-alt"></i>
+            <span class="ml-2">削除</span>
+          </button>
+          <% end %>
+        </span>
+      </div>
     </div>
     <div class="col-3 d-flex flex-column justify-content-center">
       <div>作成者:<%= document.writer.name %></div>
