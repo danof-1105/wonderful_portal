@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-9 row my-4">
       <div class="col-7">
-        <span class="documents_title"><%= link_to document.title, document, class: "text-decoration-none" %></span>
+        <span class="documents_title"><%= link_to document.title.truncate(15), document, class: "text-decoration-none" %></span>
       </div>
       <div class="col-5">
         <span>
