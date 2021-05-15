@@ -44,7 +44,7 @@ class DocumentsController < ApplicationController
       if images.present?
         images.each do |image|
           document_image = DocumentImage.create!(image: image)
-          body << "\n ![#{document_image.image_identifier}](/uploads/tmp/document_image/#{document_image.image_identifier})"
+          body << "\n ![#{document_image.image_identifier}](/uploads/document_image/image/#{document_image.id}/#{document_image.image_identifier})"
         end
       end
 
