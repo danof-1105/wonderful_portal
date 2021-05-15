@@ -51,7 +51,7 @@ class DocumentsController < ApplicationController
       if images.present?
         images.each do |image|
           document_image = DocumentImage.create!(image: image)
-          body << "\n ![#{document_image.image_identifier}](#{document_image.image_url})"
+          body << "\n ![#{document_image.image_identifier}](/uploads/tmp/document_image/#{document_image.image_identifier})"
         end
       end
 
@@ -61,7 +61,6 @@ class DocumentsController < ApplicationController
         owner: current_user,
         user_directory: prev_directory,
       }
-
       @document = current_user.documents.create!(document_elements)
     end
     redirect_to @document, notice: "ドキュメントを登録しました。"
