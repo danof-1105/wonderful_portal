@@ -64,7 +64,7 @@ class DocumentsController < ApplicationController
 
       @document = current_user.documents.create!(document_elements)
     end
-    redirect_to @document, notice: "ドキュメントを登録しました。"
+    redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
@@ -90,7 +90,7 @@ class DocumentsController < ApplicationController
       @document.update!(document_elements)
       destroy_no_content_directories(past_directories)
     end
-    redirect_to @document, notice: "ドキュメントを更新しました。"
+    redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
   end
 
   def destroy
@@ -100,7 +100,7 @@ class DocumentsController < ApplicationController
       @document.destroy!
       destroy_no_content_directories(past_directories)
     end
-    redirect_to root_path, alert: "ドキュメントを削除しました"
+    redirect_to root_path, flash: { danger: "ドキュメントを削除しました" }
   end
 
   private
