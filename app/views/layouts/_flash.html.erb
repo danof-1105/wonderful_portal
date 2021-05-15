@@ -1,4 +1,9 @@
 <% flash.each do |flash_type, msg| %>
-  <p style="color: <%= flash_type == 'notice' ? 'green' : 'red' %>;", class="flash text-center"><%= msg%></p>
+  <div class="flash alert alert-<%= flash_type || "primary" %>" style="margin-bottom: 0;" role="alert">
+    <%= msg %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 <% end %>
 <%= javascript_pack_tag 'flash' %>
