@@ -3,14 +3,21 @@ class DocumentsController < ApplicationController
     @document = current_user.documents.new
   end
 
+  def edit
+    @document = current_user.have_documents.find(params[:id])
+    @all_directories = @document.user_directory.path.pluck(:name).join("/")
+    @title = @document.title
+  end
+
   def index
-    @user_directories = UserDirectory.arrange
+    @user_directories = current_user.user_directories.arrange
     if params[:directory_id]
       target_directory = current_user.user_directories.find(params[:directory_id])
       target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
     end
     # HACK: 分かりやすいコードに改善余地あり
-    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
+    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
+    @current_directory_name = target_directory&.name || "ドキュメント一覧"
   end
 
   def show
@@ -21,7 +28,7 @@ class DocumentsController < ApplicationController
   # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def create
     # Description: タイトルの文字列を / 毎に配列に直す
-    directories_and_title = params[:document][:title_with_directory].split("/")
+    directories_and_title = params[:document][:title].split("/")
     # Description: タイトル名は配列の一番後ろなので pop で取り出す
     title = directories_and_title.pop
     ActiveRecord::Base.transaction do
@@ -53,11 +60,53 @@ class DocumentsController < ApplicationController
         body: body,
         owner: current_user,
         user_directory: prev_directory,
-        title_with_directory: directories_and_title,
       }
       @document = current_user.documents.create!(document_elements)
     end
     redirect_to @document, notice: "ドキュメントを登録しました。"
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
+
+  def update # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    directories_and_title = params[:document][:title].split("/")
+    title = directories_and_title.pop
+    body = params[:document][:body]
+    @document = current_user.have_documents.find(params[:id])
+    past_directories = @document.user_directory.path.reverse_order
+    ActiveRecord::Base.transaction do
+      first_directory_name = directories_and_title.blank? ? "指定なし" : directories_and_title[0]
+      prev_directory = current_user.user_directories.find_or_create_by!(name: first_directory_name, ancestry: nil)
+      directories_and_title.each_with_index do |directory_name, i|
+        next if i == 0
+
+        prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
+      end
+      document_elements = {
+        title: title,
+        body: body,
+        user_directory: prev_directory,
+      }
+      @document.update!(document_elements)
+      destroy_no_content_directories(past_directories)
+    end
+    redirect_to @document, notice: "ドキュメントを更新しました。"
+  end
+
+  def destroy
+    @document = current_user.have_documents.find(params[:id])
+    past_directories = @document.user_directory.path.reverse_order
+    ActiveRecord::Base.transaction do
+      @document.destroy!
+      destroy_no_content_directories(past_directories)
+    end
+    redirect_to root_path, notice: "ドキュメントを削除しました"
+  end
+
+  private
+
+    def destroy_no_content_directories(target_directories)
+      target_directories.each do |directory|
+        directory.do_not_have? ? directory.destroy! : break
+      end
+    end
 end

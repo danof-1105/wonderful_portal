@@ -55,4 +55,31 @@ RSpec.describe UserDirectory, type: :model do
       end
     end
   end
+
+  # rubocop:disable RSpec/MultipleMemoizedHelpers
+  describe "カスタムバリデーションのチェック" do
+    let(:first_user_directory) { create(:user_directory) }
+    let(:second_user_directory) { first_user_directory.children.create(name: "1", user: first_user_directory.user) }
+    let(:third_user_directory) { second_user_directory.children.create(name: "2", user: second_user_directory.user) }
+    let(:forth_user_directory) { third_user_directory.children.create(name: "3", user: third_user_directory.user) }
+    let(:fifth_user_directory) { forth_user_directory.children.create(name: "4", user: forth_user_directory.user) }
+    let(:six_user_directory) { fifth_user_directory.children.create(name: "5", user: fifth_user_directory.user) }
+
+    context "ディレクトリの階層が５階層までのとき" do
+      subject { fifth_user_directory }
+
+      it "ユーザーディレクトリが作られる" do
+        expect(subject).to be_valid
+      end
+    end
+
+    context "ディレクトリの階層が６階層以上のとき" do
+      subject { six_user_directory }
+
+      it "ユーザーディレクトリは作られない" do
+        expect(subject).not_to be_valid
+      end
+    end
+  end
+  # rubocop:enable RSpec/MultipleMemoizedHelpers
 end

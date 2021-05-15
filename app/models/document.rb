@@ -32,5 +32,4 @@ class Document < ApplicationRecord
   belongs_to :owner, polymorphic: true
 
   validates :title, length: { maximum: 50 }, presence: true
-  attr_accessor :title_with_directory
 end
