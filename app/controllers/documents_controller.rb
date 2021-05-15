@@ -71,6 +71,7 @@ class DocumentsController < ApplicationController
     directories_and_title = params[:document][:title].split("/")
     title = directories_and_title.pop
     body = params[:document][:body]
+    images = params[:document][:image]
     @document = current_user.have_documents.find(params[:id])
     past_directories = @document.user_directory.path.reverse_order
     ActiveRecord::Base.transaction do
@@ -81,6 +82,14 @@ class DocumentsController < ApplicationController
 
         prev_directory = prev_directory.children.find_or_create_by!(name: directory_name, user: current_user)
       end
+
+      if images.present?
+        images.each do |image|
+          document_image = DocumentImage.create!(image: image)
+          body << "\n ![#{document_image.image_identifier}](/uploads/document_image/image/#{document_image.id}/#{document_image.image_identifier})"
+        end
+      end
+
       document_elements = {
         title: title,
         body: body,
