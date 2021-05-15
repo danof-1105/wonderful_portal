@@ -1,4 +1,5 @@
-<div class="container mt-4 pb-2 border-bottom">
+<div class="container mt-4 pb-2 border-bottom index_title">
+  <i class="fas fa-book text-primary"></i>
   <%= @current_directory_name %>
 </div>
 
@@ -16,8 +17,9 @@
         <% end %>
       </span>
     </div>
-    <div class="col-4 text-center mt-4 px-0">
-      <div class>作成者:<%= document.writer.name %>更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
+    <div class="col-3 d-flex flex-column justify-content-center">
+      <div>作成者:<%= document.writer.name %></div>
+      <div>更新日:<%= document.updated_at.strftime('%Y年%m月%d日') %></div>
     </div>
   </div>
 </div>
