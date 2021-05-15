@@ -13,9 +13,10 @@
 <body>
   <div class="root_container">
     <% if user_signed_in? %>
-    <%= render "layouts/documents_sidebar" %>
+      <%= render "layouts/documents_sidebar" %>
     <% end %>
     <div class="big_container">
+      <%= render partial: 'layouts/flash' %>
       <%= yield %>
     </div>
   </div>
