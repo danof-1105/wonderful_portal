@@ -5,7 +5,7 @@
       ドキュメント作成
     </h2>
   </div>
-  <%= form_with model:@document do |f| %>
+  <%= form_with model:@document, id: "form" do |f| %>
   <div class="row">
     <div class="col-12">
       <div class='form-group mt-3 pr-3'>
@@ -22,7 +22,7 @@
       </div>
       <div class='form-group'>
         <%= f.label :画像を添付 %>
-        <%= f.file_field :image, multiple: true %>
+        <%= f.file_field :image, multiple: true, id: 'image' %>
       </div>
       <div class="text-right">
         <%= f.submit '作成', class: 'btn btn-primary create_docuent_button' %>
@@ -36,3 +36,4 @@
   </div>
 </div>
 <%= javascript_pack_tag 'documents/real_time_preview.js' %>
+<%= javascript_pack_tag 'documents/sample.js' %>
