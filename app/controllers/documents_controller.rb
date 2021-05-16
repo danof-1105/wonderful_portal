@@ -48,11 +48,17 @@ class DocumentsController < ApplicationController
       images = params[:document][:image]
       body = params[:document][:body]
 
+      # NOTE: 画像の登録処理
       if images.present?
+        target_image_ids = []
         images.each do |image|
           document_image = DocumentImage.create!(image: image)
-          body << "\n ![#{document_image.image_identifier}](/uploads/document_image/image/#{document_image.id}/#{document_image.image_identifier})"
+          # NOTE: document_image = document_image.reloadでローカル環境は対応できるが、本番だと保存場所がズレる
+          target_image_ids << document_image.id
         end
+
+        add_images = DocumentImage.where(id: target_image_ids)
+        add_images.each {|image| body << "\n ![#{image.image_identifier}](#{image.image_url})" }
       end
 
       document_elements = {
