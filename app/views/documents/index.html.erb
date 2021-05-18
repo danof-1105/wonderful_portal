@@ -8,5 +8,6 @@
     <div id="directory_document">
       <%= render partial: 'document', locals: { documents: @documents } %>
     </div>
+    <%= paginate @documents %>
   </div>
 </div>

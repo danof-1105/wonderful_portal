@@ -1,4 +1,6 @@
 class DocumentsController < ApplicationController
+  PER_PAGE = 8
+
   def new
     @document = current_user.documents.new
   end
@@ -29,7 +31,7 @@ class DocumentsController < ApplicationController
     # @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
 
     # HACK: コミュニティ機能ができたら削除
-    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
+    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids).page(params[:page]).per(PER_PAGE) : Document.page(params[:page]).per(PER_PAGE)
 
     @current_directory_name = target_directory&.name || "ドキュメント一覧"
   end
