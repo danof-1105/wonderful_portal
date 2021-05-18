@@ -10,18 +10,37 @@ class DocumentsController < ApplicationController
   end
 
   def index
-    @user_directories = current_user.user_directories.arrange
+    # HACK: コミュニティ機能ができたら削除
+    @user_directories = UserDirectory.arrange
     if params[:directory_id]
-      target_directory = current_user.user_directories.find(params[:directory_id])
+      target_directory = UserDirectory.find(params[:directory_id])
       target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
     end
+
+    # HACK: コミュニティ機能ができたらコメントインする
+    # @user_directories = current_user.user_directories.arrange
+    # if params[:directory_id]
+    #   target_directory = current_user.user_directories.find(params[:directory_id])
+    #   target_directory_ids = target_directory.descendant_ids.push(target_directory.id)
+    # end
+
     # HACK: 分かりやすいコードに改善余地あり
-    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
+    # HACK: コミュニティ機能ができたらコメントインする
+    # @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
+
+    # HACK: コミュニティ機能ができたら削除
+    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
+
     @current_directory_name = target_directory&.name || "ドキュメント一覧"
   end
 
   def show
-    @document = current_user.have_documents.find(params[:id])
+    # HACK: コミュニティ機能ができたらコメントインする
+    # @document = current_user.have_documents.find(params[:id])
+
+    # HACK: コミュニティ機能ができたら削除
+    @document = Document.find(params[:id])
+
     @directory = @document.user_directory.path.pluck(:name)
   end
 
