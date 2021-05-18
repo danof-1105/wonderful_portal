@@ -35,7 +35,12 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    @document = current_user.have_documents.find(params[:id])
+    # HACK: コミュニティ機能ができたらコメントインする
+    # @document = current_user.have_documents.find(params[:id])
+
+    # HACK: コミュニティ機能ができたら削除
+    @document = Document.find(params[:id])
+
     @directory = @document.user_directory.path.pluck(:name)
   end
 
