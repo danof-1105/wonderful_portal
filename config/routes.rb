@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
-  devise_for :users, skip: "passwords"
+  devise_for :users, controllers: {
+    confirmations: "users/confirmations"
+  }
   root "documents#index"
   post '/member_joined_channel' => 'member_joined_channel#callback', as: :member_joined_channel
   resources :documents
