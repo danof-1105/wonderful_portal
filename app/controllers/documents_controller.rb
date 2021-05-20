@@ -31,7 +31,8 @@ class DocumentsController < ApplicationController
     # @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids) : current_user.have_documents
 
     # HACK: コミュニティ機能ができたら削除
-    @documents = target_directory_ids ? Document.where(user_directory: target_directory_ids).page(params[:page]).per(PER_PAGE) : Document.page(params[:page]).per(PER_PAGE)
+    @documents_judge = target_directory_ids ? Document.where(user_directory: target_directory_ids) : Document.all
+    @documents = @documents_judge.page(params[:page]).per(PER_PAGE)
 
     @current_directory_name = target_directory&.name || "ドキュメント一覧"
   end
