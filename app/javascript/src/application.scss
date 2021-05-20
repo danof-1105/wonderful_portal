@@ -147,3 +147,14 @@ th, td {
   white-space: nowrap;
   text-align: left;
 }
+
+
+// ページネーション
+.page-item:not(:first-child) {
+  margin-left: 10px;
+}
+
+.page-link {
+  color: #41474c;
+  box-shadow: 0 2px 3px gray;
+}
