@@ -39,6 +39,7 @@ class User < ApplicationRecord
   validates :name, presence: true, length: { maximum: 20 }
 
   protected
+
     def password_required?
       confirmed? ? super : false
     end
