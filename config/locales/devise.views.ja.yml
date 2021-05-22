@@ -21,7 +21,7 @@ ja:
         remember_created_at: ログイン記憶時刻
         remember_me: ログインを記憶する
         reset_password_sent_at: パスワードリセット送信時刻
-        reset_password_token: パスワードリセット用トークン
+        reset_password_token: パスワード設定
         sign_in_count: ログイン回数
         unconfirmed_email: 未確認Eメール
         unlock_token: ロック解除用トークン
@@ -43,7 +43,7 @@ ja:
       locked: アカウントはロックされています。
       not_found_in_database: "%{authentication_keys}またはパスワードが違います。"
       timeout: セッションがタイムアウトしました。もう一度ログインしてください。
-      unauthenticated: アカウント登録もしくはログインしてください。
+      unauthenticated: アカウント認証メールを送信しました。
       unconfirmed: メールアドレスの本人確認が必要です。
     mailer:
       confirmation_instructions:
