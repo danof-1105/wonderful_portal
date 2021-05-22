@@ -112,10 +112,13 @@ class DocumentsController < ApplicationController
         body: body,
         user_directory: prev_directory,
       }
-      @document.update!(document_elements)
-      destroy_no_content_directories(past_directories)
+      if @document.update(document_elements)
+        destroy_no_content_directories(past_directories)
+        redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
+      else
+        render action: :edit
+      end
     end
-    redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
   end
 
   def destroy
