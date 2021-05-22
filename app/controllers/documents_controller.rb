@@ -83,9 +83,13 @@ class DocumentsController < ApplicationController
         owner: current_user,
         user_directory: prev_directory,
       }
-      @document = current_user.documents.create!(document_elements)
+      @document = current_user.documents.new(document_elements)
+      if @document.save
+        redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
+      else
+        render :new
+      end
     end
-    redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
