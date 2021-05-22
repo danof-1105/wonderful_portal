@@ -52,14 +52,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "passwordが入力されていない時" do
-      let(:user) { build(:user, password: nil) }
-      it "ユーザーが作成されない" do
-        expect(subject).not_to be_valid
-        expect(subject.errors.details[:password][0][:error]).to eq :blank
-      end
-    end
-
     context "nameが20文字以下の時" do
       let(:user) { build(:user, name: "A" * 20) }
       it "ユーザーが作成される" do
