@@ -83,11 +83,11 @@ class DocumentsController < ApplicationController
         owner: current_user,
         user_directory: prev_directory,
       }
-      @document = current_user.documents.new(document_elements)
-      @document = @document.save!
+      @document = current_user.documents.create!(document_elements)
     end
       redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
-    rescue => e
+    rescue ActiveRecord::RecordInvalid => e
+      @error_messages = e.record.errors.full_messages
       render :new
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
