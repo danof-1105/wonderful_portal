@@ -84,12 +84,11 @@ class DocumentsController < ApplicationController
         user_directory: prev_directory,
       }
       @document = current_user.documents.new(document_elements)
-      if @document.save
-        redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
-      else
-        render :new
-      end
+      @document = @document.save!
     end
+      redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
+    rescue => e
+      render :new
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
@@ -112,13 +111,12 @@ class DocumentsController < ApplicationController
         body: body,
         user_directory: prev_directory,
       }
-      if @document.update(document_elements)
-        destroy_no_content_directories(past_directories)
-        redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
-      else
-        render action: :edit
-      end
+      @document.update!(document_elements)
+      destroy_no_content_directories(past_directories)
     end
+      redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
+    rescue => e
+      render :new
   end
 
   def destroy
