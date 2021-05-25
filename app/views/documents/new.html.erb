@@ -20,10 +20,6 @@
         <%= f.label :本文 %>
         <%= f.text_area :body, rows: 10, class: 'form-control input_body', id: 'markdown_editor_textarea', placeholder: '本文を書いていきましょう' %>
       </div>
-      <div class='form-group'>
-        <%= f.label :画像を添付 %>
-        <%= f.file_field :image, multiple: true, id: 'image' %>
-      </div>
       <div class="text-right">
         <%= f.submit '作成', class: 'btn btn-primary create_docuent_button' %>
         <% end %>
