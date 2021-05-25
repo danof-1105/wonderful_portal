@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   PER_PAGE = 8
+  rescue_from ActiveRecord::RecordNotFound, with: :redirect_to_toppage
 
   def new
     @document = current_user.documents.new
@@ -136,5 +137,9 @@ class DocumentsController < ApplicationController
       target_directories.each do |directory|
         directory.do_not_have? ? directory.destroy! : break
       end
+    end
+
+    def redirect_to_toppage
+      redirect_to :root, flash: { danger: "このドキュメントは自分のではないため編集できません。" }
     end
 end
