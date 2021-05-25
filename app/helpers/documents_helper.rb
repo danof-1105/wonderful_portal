@@ -8,6 +8,6 @@ module DocumentsHelper
   end
 
   def value_text
-    action_name == "edit" ? "#{@all_directories}/#{@title}" : ""
+    action_name == "edit" ? "#{@all_directories}/#{@title}" : ""  # rubocop:disable  Rails/HelperInstanceVariable
   end
 end
