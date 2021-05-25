@@ -19,6 +19,7 @@ gem "rails", "~> 6.1.3"
 gem "rails-i18n", "~> 6.0"
 gem "sass-rails", ">= 6"
 gem "slack-notifier"
+gem "slack-ruby-client"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 5.0"
 
