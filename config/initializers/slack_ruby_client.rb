@@ -1,3 +1,3 @@
 Slack.configure do |config|
-  config.token = ENV['BOT_USER_ACCESS_TOKEN']
+  config.token = ENV['ACCESS_TOKEN']
 end
