@@ -2,8 +2,8 @@ $(function() {
   $('#markdown_editor_textarea').on('drop', function(e) {
     e.preventDefault();
     f = e.originalEvent.dataTransfer.files[0];
-    var imageData = $('#image').prop('files', f);
-    var formData = new FormData();
+    const imageData = $('#image').prop('files', f);
+    const formData = new FormData();
     formData.append("image", f);
 
     $.ajax({
@@ -19,6 +19,8 @@ $(function() {
       const textArea = document.getElementById("markdown_editor_textarea");
       const fileLink = `![${filename}](${url})`;
       textArea.value = `${textArea.value}\n${fileLink}`;
+      const html = marked($(this).val());
+      $("#markdown_preview").html(html);
     });
   });
 });
