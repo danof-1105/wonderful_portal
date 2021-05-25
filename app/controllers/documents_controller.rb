@@ -115,8 +115,9 @@ class DocumentsController < ApplicationController
       destroy_no_content_directories(past_directories)
     end
       redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
-    rescue => e
-      render :new
+    rescue ActiveRecord::RecordInvalid => e
+      @error_messages = e.record.errors.full_messages
+      render :edit
   end
 
   def destroy
