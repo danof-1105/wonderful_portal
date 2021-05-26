@@ -3,9 +3,9 @@ if User.all.blank?
     ##########################################
     # Userの作成
     ##########################################
-    user = User.create!(email: "yamada@example.com", name: "山田 太郎", password: "password")
-    user2 = User.create!(email: "suzuki@example.com", name: "鈴木 次郎", password: "password")
-    user3 = User.create!(email: "satou@example.com", name: "佐藤 三郎", password: "password")
+    user = User.create!(email: "yamada@example.com", name: "山田 太郎", password: "password", confirmed_at: DateTime.now)
+    user2 = User.create!(email: "suzuki@example.com", name: "鈴木 次郎", password: "password", confirmed_at: DateTime.now)
+    user3 = User.create!(email: "satou@example.com", name: "佐藤 三郎", password: "password", confirmed_at: DateTime.now)
 
     ##########################################
     # UserDirectoryの作成
