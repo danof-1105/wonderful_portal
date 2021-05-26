@@ -11,20 +11,22 @@
         <span class="documents_title"><%= link_to document.title.truncate(15), document, class: "text-decoration-none text-dark" %></span>
       </div>
       <div class="col-5">
-        <span>
-          <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-pen"></i>
-            <span class="ml-2">編集</span>
-          </button>
-          <% end %>
-          <%= link_to document_path(document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
-          <button type="button" class="btn btn-danger">
-            <i class="fas fa-trash-alt"></i>
-            <span class="ml-2">削除</span>
-          </button>
-          <% end %>
-        </span>
+        <% if document.writer_id == current_user.id %>
+          <span>
+            <%= link_to edit_document_path(document), class: "text-decoration-none" do %>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-pen"></i>
+              <span class="ml-2">編集</span>
+            </button>
+            <% end %>
+            <%= link_to document_path(document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
+            <button type="button" class="btn btn-danger">
+              <i class="fas fa-trash-alt"></i>
+              <span class="ml-2">削除</span>
+            </button>
+            <% end %>
+          </span>
+        <% end %>
       </div>
     </div>
     <div class="col-3 d-flex flex-column justify-content-center">

@@ -86,6 +86,9 @@ class DocumentsController < ApplicationController
       @document = current_user.documents.create!(document_elements)
     end
     redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
+  rescue ActiveRecord::RecordInvalid => e
+    @error_messages = e.record.errors.full_messages
+    render :new
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
@@ -112,6 +115,9 @@ class DocumentsController < ApplicationController
       destroy_no_content_directories(past_directories)
     end
     redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
+  rescue ActiveRecord::RecordInvalid => e
+    @error_messages = e.record.errors.full_messages
+    render :edit
   end
 
   def destroy

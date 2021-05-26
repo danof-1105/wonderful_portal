@@ -5,31 +5,7 @@
       ドキュメント作成
     </h2>
   </div>
-  <%= form_with model:@document, id: "form" do |f| %>
-  <div class="row">
-    <div class="col-12">
-      <div class='form-group mt-3 pr-3'>
-        <%= f.label :タイトル %>
-        <%= f.text_field :title, class: 'form-control', placeholder: 'タイトル' %>
-      </div>
-    </div>
-  </div>
-  <div class="row document_body pr-3">
-    <div class="col-6 border-right">
-      <div class='form-group'>
-        <%= f.label :本文 %>
-        <%= f.text_area :body, rows: 10, class: 'form-control input_body', id: 'markdown_editor_textarea', placeholder: '本文を書いていきましょう' %>
-      </div>
-      <div class="text-right">
-        <%= f.submit '作成', class: 'btn btn-primary create_docuent_button' %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-6">
-      <div>プレビュー</div>
-      <div id="markdown_preview" class="preview border mt-2"></div>
-    </div>
-  </div>
+  <%= render partial: 'form', locals: { document: @document } %>
 </div>
 <%= javascript_pack_tag 'documents/real_time_preview.js' %>
 <%= javascript_pack_tag 'documents/fileupload.js' %>
