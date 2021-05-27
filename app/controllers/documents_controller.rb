@@ -87,8 +87,8 @@ class DocumentsController < ApplicationController
     end
     redirect_to @document, flash: { primary: "ドキュメントを登録しました。" }
   rescue ActiveRecord::RecordInvalid => e
-    @error_messages = e.record.errors.full_messages
-    render :new
+    @error_messages = e.record.errors.full_messages.first
+    redirect_to new_document_path, flash: { danger: @error_messages }
   end
   # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
@@ -116,8 +116,8 @@ class DocumentsController < ApplicationController
     end
     redirect_to @document, flash: { primary: "ドキュメントを更新しました。" }
   rescue ActiveRecord::RecordInvalid => e
-    @error_messages = e.record.errors.full_messages
-    render :edit
+    @error_messages = e.record.errors.full_messages.first
+    redirect_to edit_document_path, flash: { danger: @error_messages }
   end
 
   def destroy
