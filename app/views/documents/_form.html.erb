@@ -3,10 +3,8 @@
     <div class="col-12">
       <div class='form-group mt-3 pr-3'>
         <%= f.label :タイトル %>
-        <%= f.text_field :title, class: 'form-control', value: value_text %>
-        <% if @error_messages.present? %>
-          <p style="color: red;"><%= @error_messages.first %></p>
-        <% end %>
+        <%= f.text_field :title, class: 'form-control form-title', value: value_text %>
+        <p style="color: red;"></p>
       </div>
     </div>
   </div>
@@ -30,3 +28,4 @@
     </div>
   </div>
 <% end %>
+<%= javascript_pack_tag 'documents/validation.js' %>
