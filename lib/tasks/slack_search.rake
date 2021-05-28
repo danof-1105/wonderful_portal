@@ -8,7 +8,7 @@ namespace :slack_search do
       next if member_data[:profile][:email].nil?
 
       unless users.exists?(email: member_data[:profile][:email])
-        User.create!(name: member_data[:profile][:display_name], email: member_data[:profile][:email])
+        User.create!(name: member_data[:profile][:real_name], email: member_data[:profile][:email])
       end
     end
   end
