@@ -1,5 +1,5 @@
 $(function() {
-  $(".form-title").on("blur", function() {
+  $("#form-title").on("blur", function() {
     let value = $(this).val();
     let directory = value.split("/")
     let title = directory.slice(-1)[0]
