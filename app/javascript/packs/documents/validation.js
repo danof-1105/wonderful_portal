@@ -16,13 +16,6 @@ $(function() {
       validation.text("");
     }
 
-    let result = false;
-    $.each(directory, function(index, value) {
-      if (value.length > 20) {
-        result = true;
-        return false;
-      }
-    });
-    if (result) { validation.text('ディレクトリ名は20文字以内です'); }
+    $.each(directory, (index, value) => { if(value.length > 20) { validation.text('ディレクトリ名は20文字以内です') } });
   });
 });
