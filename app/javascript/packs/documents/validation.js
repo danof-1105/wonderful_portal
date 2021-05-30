@@ -5,6 +5,7 @@ $(function() {
     const title = directory.slice(-1)[0]
     const validation = $("#title-error-message");
 
+    // HACK: switch文に変更予定
     if (value == "" || !value.match(/[^\s\t]/)) {
       validation.text('タイトルを入力してください！');
     } else if (title.length > 50 ) {
