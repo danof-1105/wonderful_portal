@@ -1,9 +1,9 @@
 $(function() {
   $("#form-title").on("blur", function() {
-    let value = $(this).val();
-    let directory = value.split("/")
-    let title = directory.slice(-1)[0]
-    let validation = $(this).next();
+    const value = $(this).val();
+    const directory = value.split("/")
+    const title = directory.slice(-1)[0]
+    const validation = $(this).next();
 
     if (value == "" || !value.match(/[^\s\t]/)) {
       validation.text('タイトルを入力してください！');
