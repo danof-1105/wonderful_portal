@@ -3,7 +3,7 @@ $(function() {
     const value = $(this).val();
     const directory = value.split("/")
     const title = directory.slice(-1)[0]
-    const validation = $(this).next();
+    const validation = $("#title-error-message");
 
     if (value == "" || !value.match(/[^\s\t]/)) {
       validation.text('タイトルを入力してください！');
