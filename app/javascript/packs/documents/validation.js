@@ -17,9 +17,7 @@ $(function() {
 
     $.each(directory, (index, value) => { if(value.length > 20) { validation_msg.push('ディレクトリ名は20文字以内です') } });
 
-    $.each(validation_msg, function(index, value) {
-      validation.append(value + "<br>");
-    });
+    $.each(validation_msg, (index, value) => { validation.append(value + "<br>") });
   });
   $("#form-title").on("focus", function() {
     $("#title-error-message").empty();
