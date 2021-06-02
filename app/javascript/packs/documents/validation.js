@@ -17,10 +17,11 @@ $(function() {
 
     $.each(directory, (index, value) => { if(value.length > 20) { validation_msg.push('ディレクトリ名は20文字以内です') } });
 
-    if (validation_msg.length > 0) {
-      validation.text(validation_msg);
-    } else {
-      validation.text("");
-    }
+    $.each(validation_msg, function(index, value) {
+      validation.append(value + "<br>");
+    });
+  });
+  $("#form-title").on("focus", function() {
+    $("#title-error-message").empty();
   });
 });
