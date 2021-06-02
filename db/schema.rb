@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_09_060919) do
+ActiveRecord::Schema.define(version: 2021_06_02_133000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,8 @@ ActiveRecord::Schema.define(version: 2021_05_09_060919) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "community_owner_id", null: false
+    t.index ["community_owner_id"], name: "index_communities_on_community_owner_id"
     t.index ["name"], name: "index_communities_on_name", unique: true
   end
 
@@ -111,6 +113,7 @@ ActiveRecord::Schema.define(version: 2021_05_09_060919) do
 
   add_foreign_key "comments", "documents"
   add_foreign_key "comments", "users"
+  add_foreign_key "communities", "users", column: "community_owner_id"
   add_foreign_key "community_directories", "communities"
   add_foreign_key "community_directory_documents", "community_directories"
   add_foreign_key "community_directory_documents", "documents"
