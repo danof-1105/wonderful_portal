@@ -12,7 +12,7 @@ $(function() {
     if (value == "" || !value.match(/[^\s\t]/)) {
       validation_msg.push('タイトルを入力してください！');
     } else if (directory.length > 6) {
-      validation_msg.push('ディレクトリは5つ以上作成できません！');
+      validation_msg.push('ディレクトリは5つ以上作成できません！');
     } else if (title.length > 50 ) {
       validation_msg.push('タイトルは50文字以内で入力してください！');
     }
