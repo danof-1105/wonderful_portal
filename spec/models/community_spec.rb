@@ -2,20 +2,20 @@
 #
 # Table name: communities
 #
-#  id                 :bigint           not null, primary key
-#  name               :string           not null
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
-#  community_owner_id :bigint
+#  id         :bigint           not null, primary key
+#  name       :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  owner_id   :bigint
 #
 # Indexes
 #
-#  index_communities_on_community_owner_id  (community_owner_id)
-#  index_communities_on_name                (name) UNIQUE
+#  index_communities_on_name      (name) UNIQUE
+#  index_communities_on_owner_id  (owner_id)
 #
 # Foreign Keys
 #
-#  fk_rails_...  (community_owner_id => users.id)
+#  fk_rails_...  (owner_id => users.id)
 #
 require "rails_helper"
 
@@ -66,10 +66,10 @@ RSpec.describe Community, type: :model do
     end
 
     context "community_owner_id が存在しない時" do
-      let(:community) { build(:community, community_owner_id: nil) }
+      let(:community) { build(:community, owner_id: nil) }
       it "コミュニティ登録ができない" do
         expect(subject).not_to be_valid
-        expect(subject.errors.details[:community_owner][0][:error]).to eq :blank
+        expect(subject.errors.details[:owner][0][:error]).to eq :blank
       end
     end
   end
