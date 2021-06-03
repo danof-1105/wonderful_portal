@@ -1,6 +1,8 @@
 $(function() {
-  $("#form-title").on("blur", function() {
-    const value = $(this).val();
+  $("#form-title").on("blur", validation_check);
+  $("#form").on("submit", validation_check);
+  function validation_check() {
+    const value = $("#form-title").val();
     const directory = value.split("/");
     const title = directory.slice(-1)[0];
     const validation_msg = [];
@@ -17,9 +19,14 @@ $(function() {
 
     $.each(directory, (index, value) => { if(value.length > 20) { validation_msg.push('ディレクトリ名は20文字以内です'); return false; } });
 
-    $.each(validation_msg, (index, value) => { validation.append(value + "<br>") });
-  });
-  $("#form-title").on("focus", function() {
-    $("#title-error-message").empty();
-  });
+    const error = validation_msg.length;
+
+    if (error) {
+      validation.html( validation_msg.join('<br>') );
+      return false;
+    } else {
+      validation.html("");
+      return true;
+    }
+  }
 });
