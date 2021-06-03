@@ -20,5 +20,6 @@
 FactoryBot.define do
   factory :community do
     sequence(:name) {|n| "#{n}_#{Faker::Team.name}" }
+    association :community_owner, factory: :user
   end
 end
