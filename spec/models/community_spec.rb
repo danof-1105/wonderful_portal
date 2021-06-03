@@ -64,5 +64,13 @@ RSpec.describe Community, type: :model do
         expect(subject.errors.details[:name][0][:error]).to eq :blank
       end
     end
+
+    context "community_owner_id が存在しない時" do
+      let(:community) { build(:community, community_owner_id: nil) }
+      it "コミュニティ登録ができない" do
+        expect(subject).not_to be_valid
+        expect(subject.errors.details[:community_owner][0][:error]).to eq :blank
+      end
+    end
   end
 end
