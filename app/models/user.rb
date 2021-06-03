@@ -27,7 +27,7 @@ class User < ApplicationRecord
   has_many :user_directories, dependent: :destroy
   has_many :community_users, dependent: :destroy
   has_many :communities, through: :community_users
-  has_many :have_communities, class_name: "Community", foreign_key: :community_owner_id, dependent: :destroy
+  has_many :have_communities, class_name: "Community", foreign_key: :community_owner_id, inverse_of: "community_owner", dependent: :destroy
   has_many :documents, dependent: :nullify
   has_many :documents, foreign_key: :writer_id, inverse_of: "writer", dependent: :nullify
   has_many :have_documents, class_name: "Document", as: :owner, dependent: :nullify

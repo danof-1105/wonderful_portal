@@ -6,7 +6,7 @@
 #  name               :string           not null
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
-#  community_owner_id :bigint           not null
+#  community_owner_id :bigint
 #
 # Indexes
 #
