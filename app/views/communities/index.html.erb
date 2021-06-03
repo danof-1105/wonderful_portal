@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row border-bottom mt-5">
+    <h2>
+      <i class="fas fa-users sub_title"></i>
+      コミュニティ一覧
+    </h2>
+  </div>
+  <% @communities.each do |community| %>
+  <div class="row border-bottom mt-3 pb-3">
+    <div class="col-8 community_title">
+      <%= community.name %>
+    </div>
+    <div class="col-4 d-flex align-items-center">
+      オーナー: <%= community.owner.name %>
+    </div>
+  </div>
+  <% end %>
+</div>
