@@ -6,10 +6,16 @@
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  owner_id   :bigint
 #
 # Indexes
 #
-#  index_communities_on_name  (name) UNIQUE
+#  index_communities_on_name      (name) UNIQUE
+#  index_communities_on_owner_id  (owner_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (owner_id => users.id)
 #
 require "rails_helper"
 
@@ -56,6 +62,14 @@ RSpec.describe Community, type: :model do
       it "コミュニティ登録ができない" do
         expect(subject).not_to be_valid
         expect(subject.errors.details[:name][0][:error]).to eq :blank
+      end
+    end
+
+    context "community_owner_id が存在しない時" do
+      let(:community) { build(:community, owner_id: nil) }
+      it "コミュニティ登録ができない" do
+        expect(subject).not_to be_valid
+        expect(subject.errors.details[:owner][0][:error]).to eq :blank
       end
     end
   end

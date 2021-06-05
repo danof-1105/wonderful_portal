@@ -11,4 +11,15 @@
     ドキュメント一覧<br>
     <% end %>
   </div>
+  <div class="accordion-inner">
+    <div class="accordion-box-side row">
+      <button class="btn-menu bg-primary accordion-side"><i class="fas fa-ellipsis-h fa-4x pl-3 text-white"></i></button>
+      <div class="accordion-content-side">
+        <button type="botton" class="btn btn-outline-dark btn-lg">
+          <%= link_to 'ログアウト', destroy_user_session_path, class: text_color, method: :delete %>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
+<%= javascript_pack_tag 'sidebar' %>

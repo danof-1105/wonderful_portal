@@ -44,8 +44,9 @@ ul {
   }
   .documents_sidebar {
     font-size: 0.8rem;
-    width: 80px;
+    width: 90px;
     min-height: 100vh;
+    position: relative;
 
     .fa-pen-nib {
       font-size: 2.5rem;
@@ -54,6 +55,18 @@ ul {
       font-size: 2.5rem;
     }
   }
+}
+// サブタイトルのオーサムフォント
+.sub_title {
+  color: #6C757D;
+}
+
+.index_title {
+  font-size: 2rem;
+}
+
+.documents_title {
+  font-size: 1.5rem;
 }
 
 .create_docuent_button {
@@ -64,8 +77,10 @@ ul {
 }
 
 .preview {
-  height: calc(100% - 135px);
-
+  overflow-wrap: break-word;
+  overflow-y: auto;
+  min-height: 390px;
+  height: calc(100vh - 340px)
 }
 
 pre {
@@ -95,4 +110,58 @@ p code, li code {
   list-style: disc;
 }
 
+table {
+ border-collapse: collapse;
+}
+th, td {
+  border: solid 1px black;
+  padding: 10px;
+  width: 300px;
+  height: 60px;
+  text-align: center;
+}
+
+
 @import 'highlight.js/styles/railscasts.css';
+
+// サイドメニュー
+.btn-menu {
+  border: 0;
+}
+
+.accordion-inner {
+  width: calc(100% + 150px);
+  position: absolute;
+  bottom: 30px;
+}
+
+.accordion-side {
+  width: 35%;
+  padding: 0;
+}
+
+.accordion-content-side {
+  display: none;
+  z-index: 1;
+  width: 65%;
+  white-space: nowrap;
+  text-align: left;
+}
+
+
+// ページネーション
+.page-item:not(:first-child) {
+  margin-left: 10px;
+}
+
+.page-link {
+  color: #41474c;
+  box-shadow: 0 2px 3px gray;
+}
+
+// パスワード設定画面のエラーメッセージ
+.error_message {
+  ul {
+    list-style: disc;
+  }
+}

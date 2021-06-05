@@ -7,8 +7,13 @@
       <h1 class="d-inline">
         <%= @document.title %>
       </h1>
-      <%= link_to edit_document_path, class: "text-decoration-none" do %>
-      <i class="fas fa-pen-nib fa-2x pb-1 ml-2"></i><br>
+      <% if @document.writer_id == current_user.id %>
+        <%= link_to edit_document_path, class: "text-decoration-none" do %>
+          <i class="fas fa-pen fa-2x pb-1 ml-2"></i>
+        <% end %>
+          <%= link_to document_path(@document), method: :delete, data: { confirm: "ドキュメントを削除してもよろしいですか？" } do %>
+        <i class="fas fa-trash-alt fa-2x pb-1 ml-2"></i>
+        <% end %>
       <% end %>
     </div>
     <div class="col col-4 text-center">
@@ -27,5 +32,4 @@
     </div>
   </div>
 </div>
-<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
 <%= javascript_pack_tag 'documents/show' %>

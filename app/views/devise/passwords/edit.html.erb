@@ -1,0 +1,28 @@
+ <%= render "devise/shared/error_messages", resource: resource %>
+ <div class="container mt-5">
+   <div style="max-width: 500px;" class="mx-auto">
+
+     <h2>パスワードの設定</h2>
+
+     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+     <%= f.hidden_field :reset_password_token %>
+
+     <div class="field">
+       <%= f.label :password, "パスワードの設定" %>
+       <% if @minimum_password_length %>
+       <em>(<%= @minimum_password_length %> 文字以上で入力ください)</em>
+       <% end %>
+       <%= f.password_field :password, autofocus: true, autocomplete: "new-password", :class => "form-control" %>
+     </div>
+
+     <div class="field">
+       <%= f.label :password_confirmation, "パスワード確認用" %><br />
+       <%= f.password_field :password_confirmation, autocomplete: "new-password", :class => "form-control" %>
+     </div>
+
+     <div class="actions pt-4">
+       <%= f.submit "登録完了", :class => "btn btn-primary btn-block" %>
+     </div>
+     <% end %>
+   </div>
+ </div>
