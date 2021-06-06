@@ -5,15 +5,27 @@
       コミュニティ一覧
     </h2>
   </div>
+
+  <% unless current_user.communities.blank? %>
   <% @communities.each do |community| %>
   <div class="row border-bottom mt-3 pb-3">
-    <div class="col-8 community_title">
-      <%= community.name %>
+    <div class="col-8 row community_title">
+      <div class="col-8">
+        <%= community.name %>
+      </div>
+      <div class="col-4 d-flex align-items-center">
+        <% if community.owner == current_user %>
+        <div class="owner_label text-center w-100">owner</div>
+        <% end %>
+      </div>
     </div>
     <div class="col-4 d-flex align-items-center">
       オーナー: <%= community.owner.name %>
     </div>
   </div>
+  <% end %>
+  <% else %>
+  <div class="border-bottom mt-3 pb-3 community_title">所属なし</div>
   <% end %>
 </div>
 <%= paginate @communities %>
