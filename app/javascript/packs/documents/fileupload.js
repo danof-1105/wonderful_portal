@@ -15,7 +15,6 @@ $(function() {
     }).done((data) => {
       const url = data.url;
       const filename = data.filename;
-
       const textArea = document.getElementById("markdown_editor_textarea");
       const fileLink = `![${filename}](${url})`;
       textArea.value = `${textArea.value}\n${fileLink}`;
