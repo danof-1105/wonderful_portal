@@ -61,9 +61,9 @@ if User.all.blank?
     ##########################################
     # Communityの作成
     ##########################################
-    community = Community.create!(name: "Wonderful-Portal")
-    community2 = Community.create!(name: "Wonderful-Code")
-    Community.create!(name: "Wonderfur-Editor")
+    community = Community.create!(name: "Wonderful-Portal", owner: user)
+    community2 = Community.create!(name: "Wonderful-Code", owner: user)
+    Community.create!(name: "Wonderfur-Editor", owner: user)
 
     ##########################################
     # CommunityUserの作成
