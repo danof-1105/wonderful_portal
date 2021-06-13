@@ -15,12 +15,24 @@ namespace :slack_search do
 
   desc "slack に登録しているユーザーについてコミュニティに自動で参加する機能"
   task join_community: :environment do
-    client = Slack::Web::Client.new
-    community = Community.first
-    joined_user_emails = community.users.pluck(:email)
-    all_members_data = client.users_list[:members]
-    all_members_emails = all_members_data.map {|member_data| member_data[:profile][:email] }.compact
-    target_user_emails = all_members_emails.difference(joined_user_emails)
-    target_user_emails.each {|target_user_email| community.users << User.find_by(email: target_user_email) }
+    ActiveRecord::Base.transaction do
+      client = Slack::Web::Client.new
+      community = Community.first
+      joined_user_emails = community.users.pluck(:email)
+      all_members_data = client.users_list[:members]
+      all_members_emails = all_members_data.map {|member_data| member_data[:profile][:email] }.compact
+      add_user_emails = all_members_emails - joined_user_emails
+      delete_user_emails = joined_user_emails - all_members_emails
+      existed_users = community.users.where(email: add_user_emails)
+      add_user_emails.each do |email|
+        user = existed_users.find { |user| user.email == email }
+        community.community_users.create!(user: user)
+      end
+      delete_user_emails.each do |email|
+        target_user = User.find_by(email: email)
+        community_user = target_user.community_users.find_by(community: community)
+        community_user.destroy!
+      end
+    end
   end
 end
