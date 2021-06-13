@@ -17,14 +17,10 @@ namespace :slack_search do
   task join_community: :environment do
     client = Slack::Web::Client.new
     community = Community.first
-    target_users_email = community.users.pluck(:email)
+    joined_user_emails = community.users.pluck(:email)
     all_members_data = client.users_list[:members]
-    all_members_data.each do |member_data|
-      next if member_data[:profile][:email].nil?
-
-      unless target_users_email.include?(member_data[:profile][:email])
-        community.users << User.find_by(email: member_data[:profile][:email])
-      end
-    end
+    all_members_emails = all_members_data.map {|member_data| member_data[:profile][:email] }.compact
+    target_user_emails = all_members_emails.difference(joined_user_emails)
+    target_user_emails.each {|target_user_email| community.users << User.find_by(email: target_user_email) }
   end
 end
