@@ -27,5 +27,6 @@
   <% else %>
   <div class="border-bottom mt-3 pb-3 community_title">所属なし</div>
   <% end %>
+  <%= render partial: 'form', locals: { community: @community } %>
 </div>
 <%= paginate @communities %>
