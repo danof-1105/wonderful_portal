@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 2021_06_15_124426) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "owner_id"
+    t.string "slack_access_token"
+    t.boolean "slack_cooperation", default: false, null: false
     t.index ["name"], name: "index_communities_on_name", unique: true
     t.index ["owner_id"], name: "index_communities_on_owner_id"
   end
