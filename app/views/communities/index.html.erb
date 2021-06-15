@@ -27,6 +27,10 @@
   <% else %>
   <div class="border-bottom mt-3 pb-3 community_title">所属なし</div>
   <% end %>
-  <%= render partial: 'form', locals: { community: @community } %>
+  <% if user_signed_in? %>
+    <% if current_user == @user || current_user.admin? %>
+      <%= render partial: 'form', locals: { community: @community } %>
+    <% end %>
+  <% end %>
 </div>
 <%= paginate @communities %>
