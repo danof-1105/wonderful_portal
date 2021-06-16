@@ -1,0 +1,19 @@
+<div class="container create_document_container">
+  <div class="row border-bottom mt-5">
+    <h2>
+      <i class="fas fa-pen-nib sub_title"></i>
+      コミュニティ管理
+    </h2>
+  </div>
+  <p>コミュニティ作成</p>
+    <!-- CHANGED: サイドバーにコミュニティ管理機能を追加し、コミュニティ作成画面を実装
+
+    # POST ではだめ
+    No route matches [POST] "/communities/new"
+     -->
+  <% if user_signed_in? %>
+    <% if current_user == @user || current_user.admin? %>
+      <%= render partial: 'form', locals: { community: @community } %>
+    <% end %>
+  <% end %>
+</div>

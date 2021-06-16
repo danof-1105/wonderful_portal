@@ -27,7 +27,8 @@
   <% else %>
   <div class="border-bottom mt-3 pb-3 community_title">所属なし</div>
   <% end %>
-  <% if user_signed_in? %>
+  <!-- CHANGED: サイドバーにコミュニティ管理機能を追加し、コミュニティ作成画面を実装 -->
+ <% if user_signed_in? %>
     <% if current_user == @user || current_user.admin? %>
       <%= render partial: 'form', locals: { community: @community } %>
     <% end %>
