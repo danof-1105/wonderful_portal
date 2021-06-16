@@ -17,12 +17,14 @@
     コミュニティ一覧<br>
     <% end %>
   </div>
-  <div class="pt-4">
-    <%= link_to new_community_path, class: "text-decoration-none text-white" do %>
-    <i class="fas fa-cog pb-1"></i><br>
-    コミュニティ管理<br>
-    <% end %>
-  </div>
+  <% if current_user == @user || current_user.admin? %>
+    <div class="pt-4">
+      <%= link_to new_community_path, class: "text-decoration-none text-white" do %>
+      <i class="fas fa-cog fa-3x"></i><br>
+      コミュニティ管理<br>
+      <% end %>
+    </div>
+  <% end %>
   <div class="accordion-inner">
     <div class="accordion-box-side row">
       <button class="btn-menu bg-primary accordion-side"><i class="fas fa-ellipsis-h fa-4x pl-3 text-white"></i></button>
