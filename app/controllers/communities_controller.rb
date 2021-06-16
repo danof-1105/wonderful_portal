@@ -11,10 +11,21 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    # FIXME: 重複コミュニティバリエーション or "既に存在するコミュニティ名です" の文言
-    @community = current_user.communities.create!(name: params[:community][:name], owner: current_user)
+    community_name = params[:community][:name]
 
-    flash[:success] = "#{@community.name}コミュニティーを作成しました。"
+    if community_name.empty?
+      flash[:danger] = "入力されていません。"
+      return redirect_back(fallback_location: root_path)
+    end
+
+    unless Community.find_by(name: community_name)
+      @community = current_user.communities.create!(name: community_name, owner: current_user)
+      flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
+
+      return redirect_back(fallback_location: root_path)
+    end
+
+    flash[:warning] = "#{community_name}コミュニティーは既に作成されています。"
     redirect_back(fallback_location: root_path)
   end
 end
