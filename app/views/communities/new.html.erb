@@ -2,13 +2,8 @@
   <div class="row border-bottom mt-5">
     <h2>
       <i class="fas fa-cog sub_title"></i>
-      コミュニティ管理
+      コミュニティー管理
     </h2>
   </div>
-  <p>コミュニティ作成</p>
-  <% if user_signed_in? %>
-    <% if current_user == @user || current_user.admin? %>
-      <%= render partial: 'form', locals: { community: @community } %>
-    <% end %>
-  <% end %>
+  <%= render partial: 'form', locals: { community: @community } %>
 </div>
