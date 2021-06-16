@@ -2,7 +2,7 @@ class CommunitiesController < ApplicationController
   PER_PAGE = 10
 
   def new
-    # TODO: コミュニティ管理画面
+    @community = current_user.communities.new
   end
 
   def index
