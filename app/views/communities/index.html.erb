@@ -6,6 +6,7 @@
     </h2>
   </div>
 
+  <!-- unless は可読性 ifで書ける分はかけるとよい  -->
   <% unless current_user.communities.blank? %>
   <% @communities.each do |community| %>
   <div class="row border-bottom mt-3 pb-3">
