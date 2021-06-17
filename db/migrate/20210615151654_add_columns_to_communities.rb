@@ -1,6 +1,8 @@
 class AddColumnsToCommunities < ActiveRecord::Migration[6.1]
   def change
-    add_column :communities, :slack_access_token, :string
-    add_column :communities, :slack_cooperation, :boolean, default: false, null: false
+    change_table :communities, bulk: true do |t|
+      t.string :slack_access_token
+      t.boolean :slack_cooperation, default: false, null: false
+    end
   end
 end

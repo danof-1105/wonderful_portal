@@ -19,7 +19,7 @@ namespace :slack_search do
       client = Slack::Web::Client.new
       communities = Community.where(slack_cooperation: true)
       communities.each do |community|
-        next unless community.slack_access_token.present?
+        next if community.slack_access_token.blank?
 
         client.token = community.slack_access_token
         joined_user_emails = community.users.pluck(:email)
@@ -29,7 +29,7 @@ namespace :slack_search do
         delete_user_emails = joined_user_emails - all_members_emails
         existed_users = community.users.where(email: add_user_emails)
         add_user_emails.each do |email|
-          user = existed_users.find { |user| user.email == email }
+          user = existed_users.find {|existed_user| existed_user.email == email }
           community.community_users.create!(user: user)
         end
         delete_user_emails.each do |email|
