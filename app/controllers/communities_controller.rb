@@ -1,4 +1,5 @@
 class CommunitiesController < ApplicationController
+  before_action :user_admin, only: [:new]
   PER_PAGE = 10
 
   def new
@@ -27,5 +28,14 @@ class CommunitiesController < ApplicationController
 
     def community_create_params
       params.require(:community).permit(:name).values[0]
+    end
+
+    def user_admin
+      @users = User.all
+      if current_user.admin == false
+        redirect_to communities_path
+      else
+        render action: "new"
+      end
     end
 end
