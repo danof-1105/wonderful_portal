@@ -1,0 +1,13 @@
+<%= form_with model:community, local: true, id: "form" do |f| %>
+<div class="row">
+  <div class="col-6">
+    <div class='form-group mt-3 pr-3'>
+      <%= f.label :コミュニティー作成 %>
+      <%= f.text_field :name, class: 'form-control', id: 'form-title', value: value_text, placeholder: 'コミュニティーをつくろう!' %>
+    </div>
+  </div>
+  <div class="mt-5 pr-3">
+    <%= f.submit "作成", class: 'btn btn-primary create_docuent_button' %>
+  </div>
+</div>
+<% end %>
