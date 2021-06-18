@@ -12,10 +12,10 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    @community = current_user.communities.new(name: community_create_params, owner: current_user)
+    @community = current_user.communities.new(community_create_params)
 
     if @community.valid?
-      current_user.communities.create!(name: community_create_params, owner: current_user)
+      current_user.communities.create!(community_create_params)
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else
@@ -27,11 +27,10 @@ class CommunitiesController < ApplicationController
   private
 
     def community_create_params
-      params.require(:community).permit(:name).values[0]
+      params.require(:community).permit(:name).merge(owner: current_user)
     end
 
     def user_admin
-      @users = User.all
       if current_user.admin == false
         redirect_to communities_path
       else
