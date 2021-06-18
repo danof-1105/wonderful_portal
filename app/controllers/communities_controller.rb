@@ -11,12 +11,12 @@ class CommunitiesController < ApplicationController
     @communities = @communities.page(params[:page]).per(PER_PAGE)
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     @community = current_user.communities.new(community_create_params.merge(owner: current_user))
 
     if @community.valid?
       @community = current_user.communities.create!(community_create_params.merge(owner: current_user))
-      @community.slack_access_token.present? ? @community.slack_cooperation = true : @community.slack_cooperation = false
+      @community.slack_cooperation = (@community.slack_access_token.present? ? true : false)
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else

@@ -2,7 +2,7 @@ namespace :slack_search do
   desc "search_users"
   task search_users: :environment do
     client = Slack::Web::Client.new
-    client.token = ENV['ACCESSTOKEN']
+    client.token = ENV["ACCESSTOKEN"]
     user_emails = User.pluck(:email)
     all_members_data = client.users_list[:members]
     all_members_data.each do |member_data|
