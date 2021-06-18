@@ -15,7 +15,8 @@ class CommunitiesController < ApplicationController
     @community = current_user.communities.new(community_create_params.merge(owner: current_user))
 
     if @community.valid?
-      current_user.communities.create!(community_create_params.merge(owner: current_user))
+      @community = current_user.communities.create!(community_create_params.merge(owner: current_user))
+      @community.slack_access_token.present? ? @community.slack_cooperation = true : @community.slack_cooperation = false
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else
@@ -26,7 +27,7 @@ class CommunitiesController < ApplicationController
   private
 
     def community_create_params
-      params.require(:community).permit(:name)
+      params.require(:community).permit(:name, :slack_access_token)
     end
 
     def authenticate_admin
