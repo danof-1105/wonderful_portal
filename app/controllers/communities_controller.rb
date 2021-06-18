@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :user_admin, only: [:new]
+  before_action :is_user_admin, only: [:new]
   PER_PAGE = 10
 
   def new
@@ -30,11 +30,7 @@ class CommunitiesController < ApplicationController
       params.require(:community).permit(:name).merge(owner: current_user)
     end
 
-    def user_admin
-      if current_user.admin == false
-        redirect_to communities_path
-      else
-        render action: "new"
-      end
+    def is_user_admin
+      redirect_to communities_path unless current_user.admin?
     end
 end
