@@ -1,14 +1,17 @@
 <%= form_with model:community, local: true, id: "form" do |f| %>
-<div class="row">
-  <div class="col-6">
-    <div class='form-group mt-3 pr-3'>
-      <%= f.label :コミュニティー作成 %>
-      <%= f.text_field :name, class: 'form-control', id: 'form-title', value: value_text, placeholder: 'コミュニティーをつくろう!' %>
-      <%= render partial: 'validation', locals: { community: @community } %>
-    </div>
-  </div>
-  <div class="mt-5 pr-3">
-    <%= f.submit "作成", class: 'btn btn-primary create_docuent_button' %>
-  </div>
+
+<h4 class="mt-4">コミュニティ作成</h4>
+
+<div class='form-group mt-3 pr-3'>
+  <%= f.label :名前 %>
+  <%= f.text_field :name, class: 'form-control', id: 'form-title', value: value_text, placeholder: 'コミュニティーをつくろう!' %>
+  <%= render partial: 'validation', locals: { community: @community } %>
+</div>
+<div class='form-group mt-3 pr-3'>
+  <%= f.label :"slack アクセストークン" %>
+  <%= f.text_field :slack_access_token, class: 'form-control', id: 'form-title', value: value_text, placeholder: 'アクセストークン' %>
+</div>
+<div class="mt-5 pr-3">
+  <%= f.submit "作成", class: 'btn btn-primary create_docuent_button' %>
 </div>
 <% end %>
