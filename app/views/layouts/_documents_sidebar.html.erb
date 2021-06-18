@@ -17,7 +17,7 @@
     コミュニティ一覧<br>
     <% end %>
   </div>
-  <% if current_user == @user || current_user.admin? %>
+  <% if current_user.admin? %>
     <div class="pt-4">
       <%= link_to new_community_path, class: "text-decoration-none text-white" do %>
       <i class="fas fa-cog fa-3x"></i><br>
