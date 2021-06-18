@@ -1,5 +1,5 @@
 class CommunitiesController < ApplicationController
-  before_action :user_admin?, only: [:new]
+  before_action :authenticate_admin, only: [:new, :create]
   PER_PAGE = 10
 
   def new
@@ -12,10 +12,10 @@ class CommunitiesController < ApplicationController
   end
 
   def create
-    @community = current_user.communities.new(community_create_params)
+    @community = current_user.communities.new(community_create_params.merge(owner: current_user))
 
     if @community.valid?
-      current_user.communities.create!(community_create_params)
+      current_user.communities.create!(community_create_params.merge(owner: current_user))
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else
@@ -27,10 +27,10 @@ class CommunitiesController < ApplicationController
   private
 
     def community_create_params
-      params.require(:community).permit(:name).merge(owner: current_user)
+      params.require(:community).permit(:name)
     end
 
-    def user_admin?
+    def authenticate_admin
       redirect_to communities_path unless current_user.admin?
     end
 end
