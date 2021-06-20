@@ -11,7 +11,7 @@ class CommunitiesController < ApplicationController
     @communities = @communities.page(params[:page]).per(PER_PAGE)
   end
 
-  def create # rubocop:disable Metrics/AbcSize
+  def create
     @community = current_user.communities.new(community_create_params.merge(owner: current_user))
 
     if @community.valid?
