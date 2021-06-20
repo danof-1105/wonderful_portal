@@ -3,7 +3,7 @@ namespace :slack_search do
   task search_users: :environment do
     client = Slack::Web::Client.new
     user_emails = User.pluck(:email)
-    communities = Community.where(slack_cooperation: true)
+    communities = Community.all
     communities.each do |community|
       next if community.slack_access_token.blank?
 
@@ -23,7 +23,7 @@ namespace :slack_search do
   task join_community: :environment do
     ActiveRecord::Base.transaction do
       client = Slack::Web::Client.new
-      communities = Community.where(slack_cooperation: true)
+      communities = Community.all
       communities.each do |community|
         next if community.slack_access_token.blank?
 
