@@ -33,7 +33,7 @@ namespace :slack_search do
         all_members_emails = all_members_data.map {|member_data| member_data[:profile][:email] }.compact
         add_user_emails = all_members_emails - joined_user_emails
         delete_user_emails = joined_user_emails - all_members_emails
-        existed_users = community.users.where(email: add_user_emails)
+        existed_users = User.where(email: add_user_emails)
         add_user_emails.each do |email|
           user = existed_users.find {|existed_user| existed_user.email == email }
           community.community_users.create!(user: user)
