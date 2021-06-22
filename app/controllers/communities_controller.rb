@@ -15,11 +15,10 @@ class CommunitiesController < ApplicationController
     @community = current_user.communities.new(community_create_params.merge(owner: current_user))
 
     if @community.valid?
-      current_user.communities.create!(community_create_params.merge(owner: current_user))
+      @community = current_user.communities.create!(community_create_params.merge(owner: current_user))
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else
-      flash.now[:danger] = "#{@community.name}コミュニティーを作成できませんでした。"
       render :new
     end
   end
