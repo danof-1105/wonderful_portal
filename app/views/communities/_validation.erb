@@ -1,14 +1,3 @@
-<% community_error_val = community.errors.values[0] %>
-<% name = "コミュニティー名" %>
-
-<% if community.errors.any? %>
-  <div>
-    <% if community.name == "" %>
-      <p class="error_format"><%= name + community_error_val %>！</p>
-    <% elsif community.name.length > 50 %>
-      <p class="error_format"><%= name + community_error_val %>！</p>
-    <% else %>
-      <p class="error_format"><%= community.name + community_error_val %>！</p>
-    <% end %>
-  </div>
+<% community.errors.full_messages.each do |msg| %>
+  <p class="error_format"><%= msg %>！</p>
 <% end %>
