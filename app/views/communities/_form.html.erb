@@ -4,6 +4,7 @@
     <div class='form-group mt-3 pr-3'>
       <%= f.label :コミュニティー作成 %>
       <%= f.text_field :name, class: 'form-control', id: 'form-title', value: value_text, placeholder: 'コミュニティーをつくろう!' %>
+      <%= render partial: 'validation', locals: { community: @community } %>
     </div>
   </div>
   <div class="mt-5 pr-3">

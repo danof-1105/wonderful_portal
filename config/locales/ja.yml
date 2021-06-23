@@ -214,3 +214,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  activerecord:
+    attributes:
+      community:
+        name: コミュニティー名

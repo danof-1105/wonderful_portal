@@ -19,7 +19,6 @@ class CommunitiesController < ApplicationController
       flash[:primary] = "#{@community.name}コミュニティーを作成しました。"
       redirect_to communities_path
     else
-      flash.now[:danger] = "#{@community.name}コミュニティーを作成できませんでした。"
       render :new
     end
   end
