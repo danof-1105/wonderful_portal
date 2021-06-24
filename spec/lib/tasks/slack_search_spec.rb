@@ -10,13 +10,18 @@ describe "slack_search" do # rubocop:disable RSpec/DescribeClass
                 { profile: { email: "sample@example.com", real_name: "t-ehara" } }] }
   }
 
-  before { allow_any_instance_of(Slack::Web::Client).to receive(:users_list).and_return(users_list_mock) } # rubocop:disable RSpec/AnyInstance
+  before {
+    client_mock = instance_double("Client")
+    allow(client_mock).to receive(:users_list).and_return(users_list_mock)
+    slack_web_client = Slack::Web::Client.new
+    allow(slack_web_client).to receive(:client).and_return(client_mock)
+  }
 
-  context "コミュニティと slack が連携している時" do
+  context "コミュニティと slack が連携している時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:user) { create(:user, name: "t-ehara", email: "sample@example.com") }
-    let!(:community) { create(:community, owner: user, slack_access_token: "xoxp-abcdefghijklmn123456789") }
+    let(:community) { create(:community, owner: user, slack_access_token: "xoxp-abcdefghijklmn123456789") }
+    let!(:community_user) { create(:community_user, user: user, community: community) }
     it "バッチ処理が実行される" do
-      user.have_communities.first.community_users.create!(user: user)
       expect { task1.execute }.to change { User.count }.from(1).to(3)
       expect(task1.execute).to be_truthy
       expect { task2.execute }.to change { community.users.count }.from(1).to(3)
@@ -24,11 +29,11 @@ describe "slack_search" do # rubocop:disable RSpec/DescribeClass
     end
   end
 
-  context "コミュニティがslack 連携をしていない時" do
+  context "コミュニティがslack 連携をしていない時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:user) { create(:user, name: "t-ehara", email: "sample@example.com") }
-    let!(:community) { create(:community, owner: user, slack_access_token: nil) }
+    let(:community) { create(:community, owner: user, slack_access_token: nil) }
+    let!(:community_user) { create(:community_user, user: user, community: community) }
     it "バッチ処理はスキップされる" do
-      user.have_communities.first.community_users.create!(user: user)
       expect { task1.execute }.not_to change { User.count }
       expect(task1.execute).to be_truthy
       expect { task2.execute }.not_to change { community.users.count }
