@@ -2,11 +2,12 @@
 #
 # Table name: communities
 #
-#  id         :bigint           not null, primary key
-#  name       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  owner_id   :bigint
+#  id                 :bigint           not null, primary key
+#  name               :string           not null
+#  slack_access_token :string
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  owner_id           :bigint
 #
 # Indexes
 #
