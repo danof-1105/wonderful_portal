@@ -11,15 +11,15 @@ describe "slack_search" do # rubocop:disable RSpec/DescribeClass
   }
 
   before {
-    client_mock = instance_double("Client")
+    client_mock = instance_double("Slack Client")
+    allow(client_mock).to receive(:token=)
     allow(client_mock).to receive(:users_list).and_return(users_list_mock)
-    slack_web_client = Slack::Web::Client.new
-    allow(slack_web_client).to receive(:client).and_return(client_mock)
+    allow(Slack::Web::Client).to receive(:new).and_return(client_mock)
   }
 
   context "コミュニティと slack が連携している時" do # rubocop:disable RSpec/MultipleMemoizedHelpers
     let(:user) { create(:user, name: "t-ehara", email: "sample@example.com") }
-    let(:community) { create(:community, owner: user, slack_access_token: "xoxp-abcdefghijklmn123456789") }
+    let(:community) { create(:community, owner: user, slack_access_token: "SLACK-ACCESS-TOKEN") }
     let!(:community_user) { create(:community_user, user: user, community: community) }
     it "バッチ処理が実行される" do
       expect { task1.execute }.to change { User.count }.from(1).to(3)
