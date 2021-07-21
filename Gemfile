@@ -7,6 +7,7 @@ gem "ancestry"
 gem "aws-sdk-rails"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "carrierwave", "~> 2.0"
+gem "config"
 gem "devise"
 gem "devise-i18n"
 gem "dotenv-rails"
