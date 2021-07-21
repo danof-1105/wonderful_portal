@@ -4,6 +4,7 @@ git_source(:github) {|repo| "https://github.com/#{repo}.git" }
 ruby "3.0.1"
 
 gem "ancestry"
+gem "aws-sdk-rails"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "carrierwave", "~> 2.0"
 gem "devise"
