@@ -69,7 +69,7 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # 自動送信メールに関する設定
-  config.action_mailer.default_url_options = { host: Settings.api.url }
+  config.action_mailer.default_url_options = { host: Settings.base.url }
   config.action_mailer.deliver_method = :ses
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
